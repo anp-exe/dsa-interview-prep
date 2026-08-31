@@ -5,9 +5,9 @@ hide:
 
 <div class="hero" markdown>
 
-<h1 class="wordmark-xl"><span class="wm-b">a</span><span class="wm-r">n</span><span class="wm-y">n</span><span class="wm-g">a</span></h1>
+<h1 class="wordmark-xl">Google <span class="wm-b">S</span><span class="wm-r">T</span><span class="wm-y">E</span><span class="wm-g">P</span> Interview Prep</h1>
 
-<p class="tagline">leetcode · google step prep</p>
+<p class="subtitle">Documenting my journey of learning DSA and LeetCode from scratch. <strong>0 to STEP interview.</strong></p>
 
 [:simple-leetcode: anp_exe on LeetCode](https://leetcode.com/u/anp_exe/){ .lc-link }
 

@@ -107,19 +107,17 @@
 /* the big one, on the home page hero */
 .md-typeset .wordmark-xl {
   font-family: Questrial, "Product Sans", "Google Sans", Nunito, system-ui, sans-serif;
-  font-size: 5rem;
-  line-height: 1;
-  letter-spacing: -.03em;
-  margin: 0 0 .35rem;
+  font-size: clamp(1.9rem, 5.2vw, 3.3rem);
+  line-height: 1.1;
+  letter-spacing: -.025em;
+  margin: 0 0 .6rem;
   font-weight: 400;
+  text-wrap: balance;
 }
 .md-typeset .wordmark-xl .wm-b { color: var(--g-blue); }
 .md-typeset .wordmark-xl .wm-r { color: var(--g-red); }
 .md-typeset .wordmark-xl .wm-y { color: var(--g-yellow-mid); }
 .md-typeset .wordmark-xl .wm-g { color: var(--g-green); }
-@media screen and (max-width: 600px) {
-  .md-typeset .wordmark-xl { font-size: 3.2rem; }
-}
 /* no hover permalink on the big wordmark */
 .md-typeset .wordmark-xl .headerlink { display: none; }
 
@@ -442,4 +440,18 @@
 @media screen and (max-width: 600px) {
   .md-typeset .pullquote { padding: 1.7rem 1.1rem 1.2rem; }
   .md-typeset .pullquote p { font-size: 1rem; }
+}
+
+/* ---------- hero subtitle ---------- */
+.md-typeset .subtitle {
+  font-size: .92rem;
+  line-height: 1.55;
+  max-width: 34em;
+  margin: 0 0 1.1rem;
+  color: var(--md-default-fg-color--light);
+}
+.md-typeset .subtitle strong {
+  font-weight: 700;
+  color: var(--g-blue-deep);
+  white-space: nowrap;   /* keep "0 to STEP interview." on one line when it wraps */
 }
