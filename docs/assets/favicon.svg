@@ -1,9 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" role="img" aria-label="anna">
-  <g fill="none" stroke-width="3.2" stroke-linecap="round" stroke-dasharray="9.6 40">
-    <path d="M 12 4 A 8 8 0 0 1 20 12" stroke="#EA4335"/>
-    <path d="M 20 12 A 8 8 0 0 1 12 20" stroke="#F9AB00"/>
-    <path d="M 12 20 A 8 8 0 0 1 4 12" stroke="#34A853"/>
-    <path d="M 4 12 A 8 8 0 0 1 12 4" stroke="#4285F4"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" role="img" aria-label="G">
+  <g fill="none" stroke-width="3.3" stroke-linecap="butt" stroke-linejoin="miter">
+    <path d="M 12.30 12.90 L 18.44 12.90 A 6.5 6.5 0 0 0 15.05 6.26" stroke="#4285F4"/>
+    <path d="M 15.05 6.26  A 6.5 6.5 0 0 0 6.26 8.95"   stroke="#EA4335"/>
+    <path d="M 6.26 8.95   A 6.5 6.5 0 0 0 8.95 17.74"  stroke="#FBBC04"/>
+    <path d="M 8.95 17.74  A 6.5 6.5 0 0 0 17.63 15.25" stroke="#34A853"/>
   </g>
-  <circle cx="12" cy="12" r="2.6" fill="#1A73E8"/>
 </svg>

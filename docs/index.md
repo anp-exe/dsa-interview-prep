@@ -24,10 +24,6 @@ Not a solutions dump. A record of how the thinking actually went, including the 
   <div class="step-chip s4">4 · Optimise<small>Find the one idea that removes the nested loop.</small></div>
 </div>
 
-!!! insight "Why the failed attempts stay on the page"
-
-    An interviewer is not scoring the final answer, they are scoring the route to it. Being able to say *"my first idea was the global minimum, here is the case that breaks it, here is what I changed"* is worth more than a memorised optimal solution. So the wrong turns get written up too.
-
 ---
 
 ## Progress

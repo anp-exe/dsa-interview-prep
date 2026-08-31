@@ -33,7 +33,11 @@ Open `http://127.0.0.1:8000`.
 
 ## Deploying
 
-Push to `main`. The workflow in `.github/workflows/deploy.yml` builds the site and pushes it to the `gh-pages` branch. Set GitHub Pages to serve from that branch once, and every push after that publishes automatically.
+Deployment runs through **GitHub Actions**, not a `gh-pages` branch.
+
+One time setup: repo **Settings → Pages → Build and deployment → Source → GitHub Actions**.
+
+After that, every push to `main` runs `.github/workflows/deploy.yml`, which builds with `mkdocs build --strict` and publishes the result straight to Pages. No extra branch, and a failed build blocks the deploy instead of shipping a broken site.
 
 ## Checking the solutions
 
