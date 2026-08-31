@@ -1,0 +1,97 @@
+site_name: anna
+site_description: LeetCode worked solutions for Google STEP interview prep, plan then pseudocode then optimise
+site_author: Anna
+site_url: https://anp-exe.github.io/dsa-interview-prep/
+
+theme:
+  name: material
+  logo: assets/logo.svg
+  favicon: assets/favicon.svg
+  palette:
+    - scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.top
+    - navigation.sections
+    - navigation.indexes
+    - content.code.copy
+    - content.code.annotate
+    - search.highlight
+    - search.suggest
+  icon:
+    repo: fontawesome/brands/github
+  font:
+    text: Questrial
+    code: JetBrains Mono
+
+repo_url: https://github.com/anp-exe/dsa-interview-prep
+repo_name: anp-exe/dsa-interview-prep
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/wordmark.js
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - def_list
+  - footnotes
+  - tables
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.keys
+  - pymdownx.caret
+  - pymdownx.mark
+  - toc:
+      permalink: true
+      permalink_title: Link to this section
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/anp-exe
+  generator: false
+
+copyright: Built by Anna while grinding for Google STEP
+
+nav:
+  - Home: index.md
+  - Easy:
+      - easy/index.md
+      - "Two Sum": easy/two-sum.md
+      - "Palindrome Number": easy/palindrome-number.md
+      - "Best Time to Buy and Sell Stock": easy/best-time-to-buy-and-sell-stock.md
+  - Medium:
+      - medium/index.md
+  - Hard:
+      - hard/index.md
+  - Reference:
+      - "Complexity Cheat Sheet": cheatsheet.md
+      - "Problem Template": template.md
