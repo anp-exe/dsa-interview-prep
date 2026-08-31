@@ -334,3 +334,31 @@
 /* ---------- logo sizing ---------- */
 .md-header__button.md-logo img,
 .md-header__button.md-logo svg { height: 1.5rem; width: 1.5rem; }
+
+/* ---------- LeetCode link in the hero ---------- */
+.md-typeset a.lc-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .45em;
+  padding: .42em .95em;
+  border-radius: 999px;
+  font-size: .74rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--md-default-fg-color);
+  background: var(--md-default-bg-color);
+  border: 1px solid rgba(128, 128, 128, .28);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .07);
+  transition: box-shadow .12s ease, transform .12s ease, border-color .12s ease;
+  margin-bottom: 1rem;
+}
+.md-typeset a.lc-link:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 161, 22, .6);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .12);
+}
+.md-typeset a.lc-link .twemoji {
+  width: 1.05em;
+  height: 1.05em;
+}
+.md-typeset a.lc-link .twemoji svg { fill: #FFA116; }

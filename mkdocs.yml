@@ -75,8 +75,12 @@ markdown_extensions:
 
 extra:
   social:
+    - icon: simple/leetcode
+      link: https://leetcode.com/u/anp_exe/
+      name: anp_exe on LeetCode
     - icon: fontawesome/brands/github
       link: https://github.com/anp-exe
+      name: anp-exe on GitHub
   generator: false
 
 copyright: Built by Anna while grinding for Google STEP

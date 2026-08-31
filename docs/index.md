@@ -9,9 +9,9 @@ hide:
 
 <p class="tagline">leetcode · google step prep</p>
 
-**Worked properly.** Every problem gets the same four steps: plan it in English, sketch the pseudocode, get something working, then make it fast.
+[:simple-leetcode: anp_exe on LeetCode](https://leetcode.com/u/anp_exe/){ .lc-link }
 
-Not a solutions dump. A record of how the thinking actually went, including the attempts that broke.
+**Worked properly.** Every problem gets the same four steps: plan it in English, sketch the pseudocode, get something working, then make it.
 
 </div>
 
@@ -81,10 +81,10 @@ Not a solutions dump. A record of how the thinking actually went, including the 
 
 ## Solved so far
 
-| Problem | Difficulty | Pattern | Time | Space |
-|---|---|---|---|---|
-| [Two Sum](easy/two-sum.md) | <span class="pill easy">Easy</span> | Hash map complement | `O(n)` | `O(n)` |
-| [Palindrome Number](easy/palindrome-number.md) | <span class="pill easy">Easy</span> | Digit arithmetic | `O(log x)` | `O(1)` |
-| [Best Time to Buy and Sell Stock](easy/best-time-to-buy-and-sell-stock.md) | <span class="pill easy">Easy</span> | Running minimum, greedy | `O(n)` | `O(1)` |
-
+[| Problem                                                                    | Difficulty                          | Pattern                 | Time       | Space  |
+|----------------------------------------------------------------------------|-------------------------------------|-------------------------|------------|--------|
+| [Two Sum](easy/two-sum.md)                                                 | <span class="pill easy">Easy</span> | Hash map complement     | `O(n)`     | `O(n)` |
+| [Palindrome Number](easy/palindrome-number.md)                             | <span class="pill easy">Easy</span> | Digit arithmetic        | `O(log x)` | `O(1)` |
+| [Best Time to Buy and Sell Stock](easy/best-time-to-buy-and-sell-stock.md) | <span class="pill easy">Easy</span> | Running minimum, greedy | `O(n)`     | `O(1)` |
+](https://leetcode.com/u/anp_exe/)
 New problem? Start from the [template](template.md).
