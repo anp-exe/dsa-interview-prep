@@ -1,0 +1,336 @@
+/* =========================================================
+   anna · dsa-interview-prep
+   blue #4285F4 · red #EA4335 · yellow #FBBC04 · green #34A853
+   ========================================================= */
+
+:root {
+  --g-blue:        #4285F4;
+  --g-blue-deep:   #1A73E8;
+  --g-red:         #EA4335;
+  --g-red-deep:    #C5221F;
+  --g-yellow:      #FBBC04;
+  --g-yellow-mid:  #F9AB00;
+  --g-yellow-deep: #B06000;
+  --g-green:       #34A853;
+  --g-green-deep:  #137333;
+  --g-purple:      #A142F4;
+  --g-purple-deep: #7627BB;
+
+  /* white header, dark text on it, the way Google's own chrome looks */
+  --md-primary-fg-color:         #ffffff;
+  --md-primary-fg-color--light:  #ffffff;
+  --md-primary-fg-color--dark:   #f1f3f4;
+  --md-primary-bg-color:         rgba(0, 0, 0, .87);
+  --md-primary-bg-color--light:  rgba(0, 0, 0, .54);
+
+  --md-accent-fg-color:          var(--g-blue-deep);
+  --md-accent-fg-color--transparent: rgba(26, 115, 232, .1);
+  --md-typeset-a-color:          var(--g-blue-deep);
+
+  --md-code-font: "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* dark mode keeps the same four colours, brighter so they pop on slate */
+[data-md-color-scheme="slate"] {
+  --g-blue-deep:   #8AB4F8;
+  --g-red-deep:    #F28B82;
+  --g-yellow-mid:  #FDD663;
+  --g-yellow-deep: #FDD663;
+  --g-green-deep:  #81C995;
+  --g-purple-deep: #D7AEFB;
+
+  --md-primary-fg-color:        #1b1d22;
+  --md-primary-fg-color--light: #2a2d34;
+  --md-primary-fg-color--dark:  #121317;
+  --md-primary-bg-color:        rgba(255, 255, 255, .92);
+  --md-primary-bg-color--light: rgba(255, 255, 255, .6);
+
+  --md-accent-fg-color:         #8AB4F8;
+  --md-typeset-a-color:         #8AB4F8;
+}
+[data-md-color-scheme="slate"] .md-typeset h2 {
+  border-bottom-color: rgba(138, 180, 248, .28);
+}
+
+/* ---------- the four colour rule under the header ---------- */
+.md-header {
+  box-shadow: 0 1px 6px rgba(0, 0, 0, .08);
+  border-bottom: 3px solid transparent;
+  border-image: linear-gradient(
+      90deg,
+      var(--g-blue)   0%,  var(--g-blue)   25%,
+      var(--g-red)    25%, var(--g-red)    50%,
+      var(--g-yellow) 50%, var(--g-yellow) 75%,
+      var(--g-green)  75%, var(--g-green)  100%) 1;
+}
+/* search box needs an outline now the header is pale */
+.md-search__form {
+  background-color: rgba(0, 0, 0, .05);
+}
+.md-search__form:hover {
+  background-color: rgba(0, 0, 0, .09);
+}
+[data-md-color-scheme="slate"] .md-search__form {
+  background-color: rgba(255, 255, 255, .08);
+}
+
+/* ---------- the anna wordmark ---------- */
+.wordmark {
+  font-family: Questrial, "Product Sans", "Google Sans", Nunito, system-ui, sans-serif;
+  font-weight: 400;
+  letter-spacing: -.015em;
+}
+.wordmark .wm-b { color: var(--g-blue); }
+.wordmark .wm-r { color: var(--g-red); }
+.wordmark .wm-y { color: var(--g-yellow-mid); }
+.wordmark .wm-g { color: var(--g-green); }
+
+.md-header__topic:first-child .wordmark {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+.md-nav--primary > .md-nav__title .wordmark {
+  font-size: 1.1rem;
+}
+
+/* the big one, on the home page hero */
+.md-typeset .wordmark-xl {
+  font-family: Questrial, "Product Sans", "Google Sans", Nunito, system-ui, sans-serif;
+  font-size: 5rem;
+  line-height: 1;
+  letter-spacing: -.03em;
+  margin: 0 0 .35rem;
+  font-weight: 400;
+}
+.md-typeset .wordmark-xl .wm-b { color: var(--g-blue); }
+.md-typeset .wordmark-xl .wm-r { color: var(--g-red); }
+.md-typeset .wordmark-xl .wm-y { color: var(--g-yellow-mid); }
+.md-typeset .wordmark-xl .wm-g { color: var(--g-green); }
+@media screen and (max-width: 600px) {
+  .md-typeset .wordmark-xl { font-size: 3.2rem; }
+}
+/* no hover permalink on the big wordmark */
+.md-typeset .wordmark-xl .headerlink { display: none; }
+
+.md-typeset h1 {
+  font-weight: 700;
+  letter-spacing: -.02em;
+  color: var(--md-default-fg-color);
+}
+.md-typeset h2 {
+  font-weight: 700;
+  border-bottom: 3px solid rgba(66, 133, 244, .18);
+  padding-bottom: .25em;
+}
+.md-typeset h3 { font-weight: 700; color: var(--g-blue-deep); }
+
+/* ---------- custom admonition icons ---------- */
+:root {
+  --md-admonition-icon--plan: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.4 6 14 4H5v17h2v-7h5.6l.4 2h7V6z"/></svg>');
+  --md-admonition-icon--pseudo: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 5h18v2H3zm0 4h12v2H3zm0 4h18v2H3zm0 4h12v2H3z"/></svg>');
+  --md-admonition-icon--attempt: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 1 0 20 10 10 0 0 1 0-20m-1 5v6h2V7zm0 8v2h2v-2z"/></svg>');
+  --md-admonition-icon--optimise: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 15H6l7-14v8h5l-7 14z"/></svg>');
+  --md-admonition-icon--insight: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-4 12.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26A7 7 0 0 0 12 2M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1"/></svg>');
+  --md-admonition-icon--gotcha: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 14h-2V9h2m0 9h-2v-2h2M1 21h22L12 2z"/></svg>');
+}
+
+.md-typeset .admonition,
+.md-typeset details {
+  border-width: 0 0 0 5px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .06);
+  font-size: .78rem;
+}
+.md-typeset .admonition-title,
+.md-typeset summary { font-weight: 700; letter-spacing: .01em; }
+.md-typeset .admonition-title::before,
+.md-typeset summary::before { border-radius: 4px; }
+
+/* 1 · PLAN, blue */
+.md-typeset .admonition.plan,
+.md-typeset details.plan { border-color: var(--g-blue); background: rgba(66, 133, 244, .06); }
+.md-typeset .plan > .admonition-title,
+.md-typeset .plan > summary { background: rgba(66, 133, 244, .14); color: var(--g-blue-deep); }
+.md-typeset .plan > .admonition-title::before,
+.md-typeset .plan > summary::before {
+  background-color: var(--g-blue);
+  -webkit-mask-image: var(--md-admonition-icon--plan);
+          mask-image: var(--md-admonition-icon--plan);
+}
+
+/* 2 · PSEUDOCODE, yellow */
+.md-typeset .admonition.pseudo,
+.md-typeset details.pseudo { border-color: var(--g-yellow); background: rgba(251, 188, 4, .09); }
+.md-typeset .pseudo > .admonition-title,
+.md-typeset .pseudo > summary { background: rgba(251, 188, 4, .2); color: var(--g-yellow-deep); }
+.md-typeset .pseudo > .admonition-title::before,
+.md-typeset .pseudo > summary::before {
+  background-color: var(--g-yellow-mid);
+  -webkit-mask-image: var(--md-admonition-icon--pseudo);
+          mask-image: var(--md-admonition-icon--pseudo);
+}
+
+/* 3 · FIRST ATTEMPT, red */
+.md-typeset .admonition.attempt,
+.md-typeset details.attempt { border-color: var(--g-red); background: rgba(234, 67, 53, .06); }
+.md-typeset .attempt > .admonition-title,
+.md-typeset .attempt > summary { background: rgba(234, 67, 53, .14); color: var(--g-red-deep); }
+.md-typeset .attempt > .admonition-title::before,
+.md-typeset .attempt > summary::before {
+  background-color: var(--g-red);
+  -webkit-mask-image: var(--md-admonition-icon--attempt);
+          mask-image: var(--md-admonition-icon--attempt);
+}
+
+/* 4 · OPTIMISE, green */
+.md-typeset .admonition.optimise,
+.md-typeset details.optimise { border-color: var(--g-green); background: rgba(52, 168, 83, .07); }
+.md-typeset .optimise > .admonition-title,
+.md-typeset .optimise > summary { background: rgba(52, 168, 83, .16); color: var(--g-green-deep); }
+.md-typeset .optimise > .admonition-title::before,
+.md-typeset .optimise > summary::before {
+  background-color: var(--g-green);
+  -webkit-mask-image: var(--md-admonition-icon--optimise);
+          mask-image: var(--md-admonition-icon--optimise);
+}
+
+/* INSIGHT, purple */
+.md-typeset .admonition.insight,
+.md-typeset details.insight { border-color: var(--g-purple); background: rgba(161, 66, 244, .06); }
+.md-typeset .insight > .admonition-title,
+.md-typeset .insight > summary { background: rgba(161, 66, 244, .14); color: var(--g-purple-deep); }
+.md-typeset .insight > .admonition-title::before,
+.md-typeset .insight > summary::before {
+  background-color: var(--g-purple);
+  -webkit-mask-image: var(--md-admonition-icon--insight);
+          mask-image: var(--md-admonition-icon--insight);
+}
+
+/* GOTCHA, orange */
+.md-typeset .admonition.gotcha,
+.md-typeset details.gotcha { border-color: #F29900; background: rgba(242, 153, 0, .08); }
+.md-typeset .gotcha > .admonition-title,
+.md-typeset .gotcha > summary { background: rgba(242, 153, 0, .18); color: var(--g-yellow-deep); }
+.md-typeset .gotcha > .admonition-title::before,
+.md-typeset .gotcha > summary::before {
+  background-color: #F29900;
+  -webkit-mask-image: var(--md-admonition-icon--gotcha);
+          mask-image: var(--md-admonition-icon--gotcha);
+}
+
+/* ---------- difficulty pills ---------- */
+.pill {
+  display: inline-block;
+  padding: .18em .7em;
+  border-radius: 999px;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  vertical-align: middle;
+  background: rgba(128, 128, 128, .16);
+  color: var(--md-default-fg-color--light);
+}
+.pill.easy   { background: rgba(52, 168, 83, .16);  color: var(--g-green-deep); }
+.pill.medium { background: rgba(251, 188, 4, .24);  color: var(--g-yellow-deep); }
+.pill.hard   { background: rgba(234, 67, 53, .14);  color: var(--g-red-deep); }
+.pill.done   { background: rgba(66, 133, 244, .14); color: var(--g-blue-deep); }
+.pill.time   { background: rgba(161, 66, 244, .12); color: var(--g-purple-deep); }
+
+/* ---------- step chips ---------- */
+.md-typeset .step-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+  margin: 1.2rem 0 1.6rem;
+}
+.md-typeset .step-chip {
+  flex: 1 1 150px;
+  border-radius: 12px;
+  padding: .75rem .9rem;
+  font-size: .72rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: #fff;
+}
+.step-chip.s1 { background: linear-gradient(135deg, #4285F4, #1A73E8); }
+.step-chip.s2 { background: linear-gradient(135deg, #FBBC04, #F29900); color: #3c2c00; }
+.step-chip.s3 { background: linear-gradient(135deg, #EA4335, #C5221F); }
+.step-chip.s4 { background: linear-gradient(135deg, #34A853, #137333); }
+.step-chip small {
+  display: block;
+  font-weight: 500;
+  opacity: .88;
+  font-size: .62rem;
+  margin-top: .25rem;
+}
+
+/* ---------- hero ---------- */
+.md-typeset .hero {
+  border-radius: 18px;
+  padding: 2rem 1.8rem;
+  margin-bottom: 1.6rem;
+  background:
+    radial-gradient(circle at 10% 15%, rgba(66, 133, 244, .18), transparent 45%),
+    radial-gradient(circle at 90% 10%, rgba(234, 67, 53, .16), transparent 45%),
+    radial-gradient(circle at 18% 95%, rgba(251, 188, 4, .2), transparent 48%),
+    radial-gradient(circle at 85% 92%, rgba(52, 168, 83, .18), transparent 48%);
+  border: 1px solid rgba(66, 133, 244, .18);
+}
+.md-typeset .hero p { margin: .2rem 0; }
+.md-typeset .hero .tagline {
+  font-size: .95rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--md-default-fg-color--light);
+  margin-bottom: 1rem;
+}
+
+/* ---------- progress bars ---------- */
+.md-typeset .bar {
+  height: 12px;
+  border-radius: 999px;
+  background: rgba(128, 128, 128, .16);
+  overflow: hidden;
+  margin: .3rem 0 1rem;
+}
+.md-typeset .bar span { display: block; height: 100%; border-radius: 999px; }
+.bar span.b-easy   { background: linear-gradient(90deg, #34A853, #81C995); }
+.bar span.b-medium { background: linear-gradient(90deg, #FBBC04, #FDD663); }
+.bar span.b-hard   { background: linear-gradient(90deg, #EA4335, #F28B82); }
+
+/* ---------- tables ---------- */
+.md-typeset table:not([class]) th {
+  background: rgba(66, 133, 244, .1);
+  font-weight: 700;
+}
+
+/* ---------- grid cards ---------- */
+.md-typeset .grid.cards > ul > li {
+  border-radius: 14px;
+  border-width: 1px;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.md-typeset .grid.cards > ul > li:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, .1);
+}
+.md-typeset .grid.cards > ul > li:nth-child(4n+1) { border-top: 4px solid var(--g-blue); }
+.md-typeset .grid.cards > ul > li:nth-child(4n+2) { border-top: 4px solid var(--g-red); }
+.md-typeset .grid.cards > ul > li:nth-child(4n+3) { border-top: 4px solid var(--g-yellow); }
+.md-typeset .grid.cards > ul > li:nth-child(4n+4) { border-top: 4px solid var(--g-green); }
+
+/* ---------- inline material icons in the four colours ---------- */
+.md-typeset .twemoji.g-blue   svg { fill: var(--g-blue); }
+.md-typeset .twemoji.g-red    svg { fill: var(--g-red); }
+.md-typeset .twemoji.g-yellow svg { fill: var(--g-yellow-mid); }
+.md-typeset .twemoji.g-green  svg { fill: var(--g-green); }
+
+/* ---------- code ---------- */
+.md-typeset pre > code { border-radius: 10px; }
+.md-typeset code { border-radius: 5px; }
+
+/* ---------- logo sizing ---------- */
+.md-header__button.md-logo img,
+.md-header__button.md-logo svg { height: 1.5rem; width: 1.5rem; }
