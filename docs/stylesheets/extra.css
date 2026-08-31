@@ -5,7 +5,7 @@
 
 :root {
   --g-blue:        #4285F4;
-  --g-blue-deep:   #1A73E8;
+  --g-blue-deep:   #1967D2;
   --g-red:         #EA4335;
   --g-red-deep:    #C5221F;
   --g-yellow:      #FBBC04;
@@ -16,6 +16,13 @@
   --g-purple:      #A142F4;
   --g-purple-deep: #7627BB;
 
+  --md-code-font: "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* Material defines --md-typeset-a-color from --md-primary-fg-color on <body>,
+   so these have to sit on the body-level scheme selector, not :root, or the
+   white header colour leaks into every link and they vanish into the page. */
+[data-md-color-scheme="default"] {
   /* white header, dark text on it, the way Google's own chrome looks */
   --md-primary-fg-color:         #ffffff;
   --md-primary-fg-color--light:  #ffffff;
@@ -23,11 +30,12 @@
   --md-primary-bg-color:         rgba(0, 0, 0, .87);
   --md-primary-bg-color--light:  rgba(0, 0, 0, .54);
 
-  --md-accent-fg-color:          var(--g-blue-deep);
-  --md-accent-fg-color--transparent: rgba(26, 115, 232, .1);
-  --md-typeset-a-color:          var(--g-blue-deep);
+  --md-accent-fg-color:          #174EA6;
+  --md-accent-fg-color--transparent: rgba(25, 103, 210, .1);
+  --md-accent-bg-color:          #ffffff;
+  --md-accent-bg-color--light:   rgba(255, 255, 255, .7);
 
-  --md-code-font: "JetBrains Mono", ui-monospace, monospace;
+  --md-typeset-a-color:          var(--g-blue-deep);
 }
 
 /* dark mode keeps the same four colours, brighter so they pop on slate */
@@ -45,7 +53,10 @@
   --md-primary-bg-color:        rgba(255, 255, 255, .92);
   --md-primary-bg-color--light: rgba(255, 255, 255, .6);
 
-  --md-accent-fg-color:         #8AB4F8;
+  --md-accent-fg-color:         #AECBFA;
+  --md-accent-fg-color--transparent: rgba(138, 180, 248, .1);
+  --md-accent-bg-color:         #16181d;
+  --md-accent-bg-color--light:  rgba(22, 24, 29, .7);
   --md-typeset-a-color:         #8AB4F8;
 }
 [data-md-color-scheme="slate"] .md-typeset h2 {
@@ -362,3 +373,24 @@
   height: 1.05em;
 }
 .md-typeset a.lc-link .twemoji svg { fill: #FFA116; }
+
+/* ---------- buttons ----------
+   Material colours .md-button from --md-primary-fg-color, which is the white
+   header here, so the label would be white on white. Pin it to the link blue. */
+.md-typeset .md-button {
+  color: var(--md-typeset-a-color);
+  border-color: currentcolor;
+  border-radius: 8px;
+  font-weight: 700;
+}
+.md-typeset .md-button:focus,
+.md-typeset .md-button:hover {
+  background-color: var(--md-typeset-a-color);
+  border-color: var(--md-typeset-a-color);
+  color: var(--md-default-bg-color);
+}
+.md-typeset .md-button--primary {
+  background-color: var(--md-typeset-a-color);
+  border-color: var(--md-typeset-a-color);
+  color: var(--md-default-bg-color);
+}
