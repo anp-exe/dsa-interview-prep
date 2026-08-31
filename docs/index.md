@@ -11,8 +11,6 @@ hide:
 
 [:simple-leetcode: anp_exe on LeetCode](https://leetcode.com/u/anp_exe/){ .lc-link }
 
-**Worked properly.** Every problem gets the same four steps: plan it in English, sketch the pseudocode, get something working, then make it.
-
 </div>
 
 ## The method
@@ -22,6 +20,13 @@ hide:
   <div class="step-chip s2">2 · Pseudocode<small>Get the shape down before fighting with syntax.</small></div>
   <div class="step-chip s3">3 · Brute force<small>Working beats clever. State the complexity out loud.</small></div>
   <div class="step-chip s4">4 · Optimise<small>Find the one idea that removes the nested loop.</small></div>
+</div>
+
+<div class="pullquote" markdown>
+
+I fear not the man who has solved **1000 problems**,
+but the man who has solved **1 problem 1000 times**.
+
 </div>
 
 ---
@@ -81,10 +86,10 @@ hide:
 
 ## Solved so far
 
-[| Problem                                                                    | Difficulty                          | Pattern                 | Time       | Space  |
+| Problem                                                                    | Difficulty                          | Pattern                 | Time       | Space  |
 |----------------------------------------------------------------------------|-------------------------------------|-------------------------|------------|--------|
 | [Two Sum](easy/two-sum.md)                                                 | <span class="pill easy">Easy</span> | Hash map complement     | `O(n)`     | `O(n)` |
 | [Palindrome Number](easy/palindrome-number.md)                             | <span class="pill easy">Easy</span> | Digit arithmetic        | `O(log x)` | `O(1)` |
 | [Best Time to Buy and Sell Stock](easy/best-time-to-buy-and-sell-stock.md) | <span class="pill easy">Easy</span> | Running minimum, greedy | `O(n)`     | `O(1)` |
-](https://leetcode.com/u/anp_exe/)
+
 New problem? Start from the [template](template.md).

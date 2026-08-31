@@ -394,3 +394,52 @@
   border-color: var(--md-typeset-a-color);
   color: var(--md-default-bg-color);
 }
+
+/* ---------- pull quote ---------- */
+.md-typeset .pullquote {
+  position: relative;
+  margin: 2.2rem 0;
+  padding: 2.1rem 2rem 1.5rem;
+  border-radius: 16px;
+  border: 1px solid rgba(128, 128, 128, .18);
+  background: var(--md-default-bg-color);
+  text-align: center;
+  overflow: hidden;
+}
+.md-typeset .pullquote::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 4px;
+  background: linear-gradient(
+      90deg,
+      var(--g-blue)   0%,  var(--g-blue)   25%,
+      var(--g-red)    25%, var(--g-red)    50%,
+      var(--g-yellow) 50%, var(--g-yellow) 75%,
+      var(--g-green)  75%, var(--g-green)  100%);
+}
+.md-typeset .pullquote p {
+  font-family: Questrial, "Product Sans", "Google Sans", system-ui, sans-serif;
+  font-size: 1.15rem;
+  line-height: 1.55;
+  letter-spacing: -.01em;
+  margin: 0;
+  color: var(--md-default-fg-color);
+}
+.md-typeset .pullquote p strong {
+  font-weight: 400;
+  color: var(--g-blue-deep);
+}
+.md-typeset .pullquote .attrib {
+  display: block;
+  margin-top: .9rem;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--md-default-fg-color--light);
+}
+@media screen and (max-width: 600px) {
+  .md-typeset .pullquote { padding: 1.7rem 1.1rem 1.2rem; }
+  .md-typeset .pullquote p { font-size: 1rem; }
+}
