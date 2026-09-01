@@ -41,6 +41,8 @@ The foundation set. Every one of these hides a pattern that shows up again three
 | `return condition`, never `if cond: return True else: return False` | Palindrome Number |
 | Test a new idea against a small adversarial case on paper first | Best Time to Buy and Sell Stock |
 | `log` complexity comes from **halving**, not just from looping | Best Time to Buy and Sell Stock |
+| A list built only to call `max()` on it at the end is `O(n)` space you do not need | Best Time to Buy and Sell Stock |
+| Fix correctness first, shrink the space second. Two separate edits | Best Time to Buy and Sell Stock |
 | `enumerate` instead of hand rolled index counters | Two Sum |
 
 ## Suggested next

@@ -43,14 +43,24 @@ def is_pal_fast(x: int) -> bool:
 
 # ---------- Best Time to Buy and Sell Stock ----------
 def max_profit(prices: List[int]) -> int:
-    min_price = float("inf")
-    best = 0
+    """Final version on the page: running min + running max, O(1) space."""
+    min_value = float("inf")
+    max_profit_so_far = 0
     for price in prices:
-        if price < min_price:
-            min_price = price
-        elif price - min_price > best:
-            best = price - min_price
-    return best
+        min_value = min(min_value, price)
+        potential_profit = price - min_value
+        max_profit_so_far = max(max_profit_so_far, potential_profit)
+    return max_profit_so_far
+
+
+def max_profit_list(prices: List[int]) -> int:
+    """Intermediate version on the page: running min + a list of profits, O(n) space."""
+    min_value = float("inf")
+    profit = []
+    for price in prices:
+        min_value = min(min_value, price)
+        profit.append(price - min_value)
+    return max(profit)
 
 
 def max_profit_broken(prices: List[int]) -> int:
@@ -118,8 +128,9 @@ for prices, want in [
     ([3, 3, 3], 0),
     ([2, 4, 1], 2),
 ]:
-    check("running min %s" % prices, max_profit(prices), want)
-    check("brute       %s" % prices, max_profit_brute(prices), want)
+    check("running min, O(1) space %s" % prices, max_profit(prices), want)
+    check("running min, O(n) space %s" % prices, max_profit_list(prices), want)
+    check("brute force             %s" % prices, max_profit_brute(prices), want)
 
 check("broken version on [2,100,1] returns 0 as claimed", max_profit_broken([2, 100, 1]), 0)
 
@@ -127,9 +138,22 @@ random.seed(7)
 bad = []
 for _ in range(3000):
     p = [random.randint(0, 40) for _ in range(random.randint(1, 12))]
-    if max_profit(p) != max_profit_brute(p):
+    b = max_profit_brute(p)
+    if max_profit(p) != b or max_profit_list(p) != b:
         bad.append(p)
-check("running min matches brute force on 3000 random arrays", bad, [])
+check("both running-min versions match brute force on 3000 random arrays", bad, [])
+
+# the page claims price - min_value is never negative, so the old ">= 0" guard was dead code
+negative_seen = []
+for _ in range(3000):
+    p = [random.randint(-50, 60) for _ in range(random.randint(1, 14))]
+    mv = float("inf")
+    for price in p:
+        mv = min(mv, price)
+        if price - mv < 0:
+            negative_seen.append(p)
+            break
+check("potential_profit is never negative, as the page claims", negative_seen, [])
 
 print()
 if fails:
