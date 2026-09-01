@@ -92,6 +92,7 @@ nav:
       - "Two Sum": easy/two-sum.md
       - "Palindrome Number": easy/palindrome-number.md
       - "Best Time to Buy and Sell Stock": easy/best-time-to-buy-and-sell-stock.md
+      - "Roman to Integer": easy/roman-to-integer.md
   - Medium:
       - medium/index.md
   - Hard:

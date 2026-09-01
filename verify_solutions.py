@@ -155,6 +155,59 @@ for _ in range(3000):
             break
 check("potential_profit is never negative, as the page claims", negative_seen, [])
 
+
+# ---------- Roman to Integer ----------
+def roman_to_int(s: str) -> int:
+    """The thirteen entry version on the page."""
+    roman_nums = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000,
+                  "IV": 4, "IX": 9, "XL": 40, "XC": 90, "CD": 400, "CM": 900}
+    num = 0
+    i = 0
+    while i < len(s):
+        if s[i:i + 2] in roman_nums:
+            num += roman_nums[s[i:i + 2]]
+            i += 2
+        else:
+            num += roman_nums[s[i]]
+            i += 1
+    return num
+
+
+def roman_to_int_lookahead(s: str) -> int:
+    """The seven entry alternative on the page."""
+    value = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
+    total = 0
+    for i in range(len(s)):
+        if i + 1 < len(s) and value[s[i]] < value[s[i + 1]]:
+            total -= value[s[i]]
+        else:
+            total += value[s[i]]
+    return total
+
+
+def int_to_roman(n: int) -> str:
+    """Only used to generate test data."""
+    table = [(1000, "M"), (900, "CM"), (500, "D"), (400, "CD"), (100, "C"), (90, "XC"),
+             (50, "L"), (40, "XL"), (10, "X"), (9, "IX"), (5, "V"), (4, "IV"), (1, "I")]
+    out = []
+    for v, sym in table:
+        while n >= v:
+            out.append(sym)
+            n -= v
+    return "".join(out)
+
+
+print("\nRoman to Integer")
+for text, want in [("III", 3), ("LVIII", 58), ("MCMXCIV", 1994), ("IV", 4), ("IX", 9),
+                   ("XL", 40), ("XC", 90), ("CD", 400), ("CM", 900), ("I", 1),
+                   ("MMMCMXCIX", 3999), ("MMXXIV", 2024)]:
+    check("pairs     %s" % text, roman_to_int(text), want)
+    check("lookahead %s" % text, roman_to_int_lookahead(text), want)
+
+wrong = [n for n in range(1, 4000)
+         if roman_to_int(int_to_roman(n)) != n or roman_to_int_lookahead(int_to_roman(n)) != n]
+check("both versions on all 3999 valid numerals", wrong, [])
+
 print()
 if fails:
     print("\n".join(fails))

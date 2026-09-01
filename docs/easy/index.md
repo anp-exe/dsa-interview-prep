@@ -1,6 +1,6 @@
 # Easy
 
-<span class="pill easy">3 solved</span>
+<span class="pill easy">4 solved</span>
 
 The foundation set. Every one of these hides a pattern that shows up again three difficulty levels later, so the point is not to pass the test cases, it is to be able to name the pattern afterwards.
 
@@ -30,9 +30,17 @@ The foundation set. Every one of these hides a pattern that shows up again three
 
     <span class="pill">Greedy</span> `O(n)`
 
+-   **[Roman to Integer](roman-to-integer.md)**
+
+    ---
+
+    Put the six subtractive exceptions **in** the lookup table and the special case branch disappears.
+
+    <span class="pill">Hash map</span> `O(1)` space
+
 </div>
 
-## What these three taught me
+## What these four taught me
 
 | Lesson | Came from |
 |---|---|
@@ -43,6 +51,8 @@ The foundation set. Every one of these hides a pattern that shows up again three
 | `log` complexity comes from **halving**, not just from looping | Best Time to Buy and Sell Stock |
 | A list built only to call `max()` on it at the end is `O(n)` space you do not need | Best Time to Buy and Sell Stock |
 | Fix correctness first, shrink the space second. Two separate edits | Best Time to Buy and Sell Stock |
+| Exceptions can live in the same lookup table as the normal cases | Roman to Integer |
+| Slicing never raises, indexing does. `s[i:i+2]` past the end is safe | Roman to Integer |
 | `enumerate` instead of hand rolled index counters | Two Sum |
 
 ## Suggested next
