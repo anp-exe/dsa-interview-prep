@@ -1,6 +1,6 @@
 # Easy
 
-<span class="pill easy">4 solved</span>
+<span class="pill easy">5 solved</span>
 
 The foundation set. Every one of these hides a pattern that shows up again three difficulty levels later, so the point is not to pass the test cases, it is to be able to name the pattern afterwards.
 
@@ -38,9 +38,17 @@ The foundation set. Every one of these hides a pattern that shows up again three
 
     <span class="pill">Hash map</span> `O(1)` space
 
+-   **[Longest Common Prefix](longest-common-prefix.md)**
+
+    ---
+
+    Scan columns, not rows. Compare index `i` across every word before moving to `i + 1`.
+
+    <span class="pill">Vertical scan</span> `O(S)`
+
 </div>
 
-## What these four taught me
+## What these five taught me
 
 | Lesson | Came from |
 |---|---|
@@ -53,6 +61,8 @@ The foundation set. Every one of these hides a pattern that shows up again three
 | Fix correctness first, shrink the space second. Two separate edits | Best Time to Buy and Sell Stock |
 | Exceptions can live in the same lookup table as the normal cases | Roman to Integer |
 | Slicing never raises, indexing does. `s[i:i+2]` past the end is safe | Roman to Integer |
+| Anything inside a `while` condition re-runs every iteration | Longest Common Prefix |
+| `min(gen)` allocates nothing, `min([list comp])` builds the whole list | Longest Common Prefix |
 | `enumerate` instead of hand rolled index counters | Two Sum |
 
 ## Suggested next

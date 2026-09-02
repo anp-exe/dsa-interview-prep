@@ -208,6 +208,76 @@ wrong = [n for n in range(1, 4000)
          if roman_to_int(int_to_roman(n)) != n or roman_to_int_lookahead(int_to_roman(n)) != n]
 check("both versions on all 3999 valid numerals", wrong, [])
 
+
+# ---------- Longest Common Prefix ----------
+def longest_common_prefix(strs):
+    """The version on the page, exactly as written."""
+    result = ""
+    i = 0
+    while i < min([len(s) for s in strs]):
+        letter = strs[0][i]
+        if all(w[i] == letter for w in strs[1:]):
+            result += letter
+            i += 1
+        else:
+            return result
+    return result
+
+
+def longest_common_prefix_tidy(strs):
+    """Same logic with the min hoisted out of the loop and a slice at the end."""
+    min_len = min(len(s) for s in strs)
+    i = 0
+    while i < min_len:
+        letter = strs[0][i]
+        if all(w[i] == letter for w in strs[1:]):
+            i += 1
+        else:
+            break
+    return strs[0][:i]
+
+
+def longest_common_prefix_minmax(strs):
+    """The lexicographic alternative on the page."""
+    lo, hi = min(strs), max(strs)
+    for i, ch in enumerate(lo):
+        if i == len(hi) or hi[i] != ch:
+            return lo[:i]
+    return lo
+
+
+def lcp_brute(strs):
+    """Only used as the reference to check the others against."""
+    prefix = strs[0]
+    for word in strs[1:]:
+        while not word.startswith(prefix):
+            prefix = prefix[:-1]
+            if not prefix:
+                return ""
+    return prefix
+
+
+print("\nLongest Common Prefix")
+for arr, want in [(["flower", "flow", "flight"], "fl"), (["dog", "racecar", "car"], ""),
+                  (["a"], "a"), (["", ""], ""), (["", "a"], ""), (["abc", "abc"], "abc"),
+                  (["ab", "abc"], "ab"), (["reflower", "flow", "flight"], "")]:
+    check("vertical %s" % arr, longest_common_prefix(arr), want)
+    check("tidied   %s" % arr, longest_common_prefix_tidy(arr), want)
+    check("min/max  %s" % arr, longest_common_prefix_minmax(arr), want)
+
+random.seed(3)
+mismatch = []
+for _ in range(4000):
+    base = "".join(random.choice("ab") for _ in range(random.randint(0, 6)))
+    arr = [base + "".join(random.choice("ab") for _ in range(random.randint(0, 4)))
+           for _ in range(random.randint(1, 5))]
+    want = lcp_brute(arr)
+    if (longest_common_prefix(arr) != want
+            or longest_common_prefix_tidy(arr) != want
+            or longest_common_prefix_minmax(arr) != want):
+        mismatch.append(arr)
+check("all three versions match brute force on 4000 random arrays", mismatch, [])
+
 print()
 if fails:
     print("\n".join(fails))

@@ -33,7 +33,7 @@ but the man who has solved **1 problem 1000 times**.
 
 ## Progress
 
-**Easy** · 4 of 4 written up
+**Easy** · 5 of 5 written up
 <div class="bar"><span class="b-easy" style="width:100%"></span></div>
 
 **Medium** · 0 written up
@@ -92,5 +92,6 @@ but the man who has solved **1 problem 1000 times**.
 | [Palindrome Number](easy/palindrome-number.md)                             | <span class="pill easy">Easy</span> | Digit arithmetic        | `O(log x)` | `O(1)` |
 | [Best Time to Buy and Sell Stock](easy/best-time-to-buy-and-sell-stock.md) | <span class="pill easy">Easy</span> | Running minimum, greedy | `O(n)`     | `O(1)` |
 | [Roman to Integer](easy/roman-to-integer.md) | <span class="pill easy">Easy</span> | Hash map with the exceptions in the table | `O(n)` | `O(1)` |
+| [Longest Common Prefix](easy/longest-common-prefix.md) | <span class="pill easy">Easy</span> | Vertical scan, column by column | `O(S)` | `O(1)` |
 
 New problem? Start from the [template](template.md).
