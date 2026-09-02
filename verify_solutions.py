@@ -1,4 +1,5 @@
 """Sanity check every solution on this site against the LeetCode examples plus edge cases."""
+import itertools
 import random
 from typing import List
 
@@ -277,6 +278,75 @@ for _ in range(4000):
             or longest_common_prefix_minmax(arr) != want):
         mismatch.append(arr)
 check("all three versions match brute force on 4000 random arrays", mismatch, [])
+
+
+# ---------- Valid Parentheses ----------
+def is_valid(s: str) -> bool:
+    """The final version on the page."""
+    pairs = {")": "(", "]": "[", "}": "{"}
+    stack = []
+    for bracket in s:
+        if bracket in pairs:
+            if not stack or stack.pop() != pairs[bracket]:
+                return False
+        else:
+            stack.append(bracket)
+    return not stack
+
+
+def is_valid_chain(s: str) -> bool:
+    """The elif-chain version, kept to prove the two agree."""
+    stack = []
+    for bracket in s:
+        if bracket in ["{", "[", "("]:
+            stack.append(bracket)
+        elif bracket in ["}", "]", ")"]:
+            if stack == []:
+                return False
+            elif stack[-1] == "{" and bracket == "}":
+                stack.pop()
+            elif stack[-1] == "(" and bracket == ")":
+                stack.pop()
+            elif stack[-1] == "[" and bracket == "]":
+                stack.pop()
+            else:
+                return False
+    return stack == []
+
+
+def is_valid_naive(s: str) -> bool:
+    """The first attempt, kept to measure how wrong presence-checking is."""
+    if "(" in s and ")" not in s:
+        return False
+    elif "[" in s and "]" not in s:
+        return False
+    elif "{" in s and "}" not in s:
+        return False
+    else:
+        return True
+
+
+print("\nValid Parentheses")
+for text, want in [("()", True), ("()[]{}", True), ("(]", False), ("([])", True),
+                   ("([)]", False), ("", True), ("(", False), (")", False),
+                   (")(", False), ("{[()]}", True), ("[{]}", False), ("((((", False)]:
+    check("stack %r" % text, is_valid(text), want)
+    check("chain %r" % text, is_valid_chain(text), want)
+
+# exhaustive: every bracket string up to length 8
+wrong_final = wrong_chain = wrong_naive = total = 0
+for length in range(0, 9):
+    for combo in itertools.product("()[]{}", repeat=length):
+        text = "".join(combo)
+        total += 1
+        want = is_valid(text)
+        if is_valid_chain(text) != want:
+            wrong_chain += 1
+        if is_valid_naive(text) != want:
+            wrong_naive += 1
+check("chain matches final on all %d bracket strings of length 0..8" % total, wrong_chain, 0)
+print("       (the naive presence-check version is wrong on %d of them, %.0f%%)"
+      % (wrong_naive, 100 * wrong_naive / total))
 
 print()
 if fails:

@@ -1,6 +1,6 @@
 # Easy
 
-<span class="pill easy">5 solved</span>
+<span class="pill easy">6 solved</span>
 
 The foundation set. Every one of these hides a pattern that shows up again three difficulty levels later, so the point is not to pass the test cases, it is to be able to name the pattern afterwards.
 
@@ -46,9 +46,17 @@ The foundation set. Every one of these hides a pattern that shows up again three
 
     <span class="pill">Vertical scan</span> `O(S)`
 
+-   **[Valid Parentheses](valid-parentheses.md)**
+
+    ---
+
+    The most recently opened bracket must close first. That is LIFO, which is a stack.
+
+    <span class="pill">Stack</span> `O(n)`
+
 </div>
 
-## What these five taught me
+## What these six taught me
 
 | Lesson | Came from |
 |---|---|
@@ -63,13 +71,15 @@ The foundation set. Every one of these hides a pattern that shows up again three
 | Slicing never raises, indexing does. `s[i:i+2]` past the end is safe | Roman to Integer |
 | Anything inside a `while` condition re-runs every iteration | Longest Common Prefix |
 | `min(gen)` allocates nothing, `min([list comp])` builds the whole list | Longest Common Prefix |
+| A rule about **order** cannot be checked with `in`. Order needs a structure | Valid Parentheses |
+| Repeated `elif` branches differing only by a value are a lookup table | Valid Parentheses |
+| Complexity is the **worst case**, so find the input that works it hardest | Valid Parentheses |
 | `enumerate` instead of hand rolled index counters | Two Sum |
 
 ## Suggested next
 
 Still easy, but each one stretches a different muscle:
 
-- [ ] Valid Parentheses, stacks
 - [ ] Merge Two Sorted Lists, linked lists and two pointers
 - [ ] Contains Duplicate, sets, a one liner once Two Sum has clicked
 - [ ] Valid Anagram, counting with a hash map

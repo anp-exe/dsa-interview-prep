@@ -455,3 +455,30 @@
   color: var(--g-blue-deep);
   white-space: nowrap;   /* keep "0 to STEP interview." on one line when it wraps */
 }
+
+/* ---------- figures ---------- */
+.md-typeset figure {
+  margin: 1.7rem auto;
+  text-align: center;
+}
+.md-typeset figure img {
+  max-width: 100%;
+  border-radius: 12px;
+  border: 1px solid rgba(128, 128, 128, .22);
+}
+/* diagrams are drawn on white, so keep a white card behind them in dark mode too */
+.md-typeset figure img.diagram {
+  background: #ffffff;
+  padding: .7rem;
+}
+.md-typeset figure img.screenshot {
+  max-width: 30rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, .14);
+}
+.md-typeset figure figcaption {
+  font-size: .72rem;
+  line-height: 1.5;
+  color: var(--md-default-fg-color--light);
+  margin: .7rem auto 0;
+  max-width: 40em;
+}

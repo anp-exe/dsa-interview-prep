@@ -68,7 +68,7 @@ Read the problem, match the phrase, reach for the tool.
 
 ---
 
-## The four patterns already met
+## The patterns already met
 
 !!! plan "Hash map complement, from Two Sum"
 
@@ -103,6 +103,22 @@ Read the problem, match the phrase, reach for the tool.
     ```
 
     One pass. The "cannot use a future value" rule enforces itself, because the running state only ever holds the past.
+
+!!! plan "Stack matching, from Valid Parentheses"
+
+    ```python
+    pairs = {")": "(", "]": "[", "}": "{"}
+    stack = []
+    for ch in s:
+        if ch in pairs:
+            if not stack or stack.pop() != pairs[ch]:
+                return False
+        else:
+            stack.append(ch)
+    return not stack
+    ```
+
+    Last In First Out. The most recent opening is the one that has to close first.
 
 !!! plan "Two pointers, coming up in Medium"
 
