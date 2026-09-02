@@ -1,6 +1,6 @@
 # Complexity Cheat Sheet
 
-Everything worth having in your head before an interview, on one page.
+Everything worth knowing cold before an interview, on one page.
 
 ---
 
@@ -18,12 +18,12 @@ Everything worth having in your head before an interview, on one page.
 
 !!! insight "The rule that generates all of these"
 
-    `log` appears when something **halves**. `n` appears when you **touch each item once**. `n²` appears when you **pair each item with each item**. Ask which of the three the code is doing and you have the answer without memorising anything.
+    `log` appears when something **halves**. `n` appears when **each item is touched once**. `n²` appears when **each item is paired with each item**. Ask which of the three the code is doing and the answer follows without memorising anything.
 
 !!! gotcha "Complexity mistakes that are easy to make"
 
     * A loop nested inside a loop is `n²` **even when the inner loop looks short**, unless it is bounded by a constant.
-    * `min()`, `max()`, `sum()`, `in list`, `list.index()` and slicing are each a **full pass**. Four of them in a row is four passes, still `O(n)`, but if the problem wants one pass you have not delivered it.
+    * `min()`, `max()`, `sum()`, `in list`, `list.index()` and slicing are each a **full pass**. Four of them in a row is four passes, still `O(n)`, but if the problem wants one pass, that is not one pass.
     * `x in some_list` is `O(n)`. `x in some_set` and `x in some_dict` are `O(1)`. This one distinction fixes an enormous number of timeouts.
     * Building a string with `s += ...` inside a loop is `O(n²)` in Python. Append to a list and `"".join()` it at the end.
     * Recursion costs stack space. `O(1)` extra space means no recursion either.
@@ -80,7 +80,7 @@ Read the problem, match the phrase, reach for the tool.
         seen[num] = i
     ```
 
-    Store as you go, check **before** you store. Anything in the map is guaranteed to be an earlier element.
+    Store while iterating, and check **before** storing. Anything in the map is guaranteed to be an earlier element.
 
 !!! plan "Digit peeling, from Palindrome Number"
 
@@ -135,7 +135,7 @@ Read the problem, match the phrase, reach for the tool.
 
 ## Interview script
 
-The four steps, in the words you would actually say out loud.
+The four steps, in the words to actually say out loud.
 
 1. **Restate it.** "So I am given X, and I need to return Y. Can I confirm that duplicates are allowed and the input is never empty?"
 2. **Name the brute force and its cost.** "The obvious approach is every pair, which is `O(n²)`. Let me get that down and then improve it."

@@ -43,7 +43,7 @@ Pick **one day to buy** and a **later day to sell** to maximise profit. Return t
 
 !!! plan "What is actually being asked"
 
-    Buy low, sell high, and **you cannot go backwards in time**. The sell day must come after the buy day.
+    Buy low, sell high, and **time only runs forward**. The sell day must come after the buy day.
 
     First instinct: for every day, look forward at every later day and record the difference. Keep the biggest. That is every pair, so `O(n²)`.
 
@@ -107,13 +107,13 @@ Pick **one day to buy** and a **later day to sell** to maximise profit. Return t
 
 !!! insight "A running minimum, not a global one"
 
-    The global minimum is a fact about the **whole** array, including days that have not happened yet. Using it means you can end up trying to sell at a price that comes **before** the day you bought, which is time travel.
+    The global minimum is a fact about the **whole** array, including days that have not happened yet. Using it can mean selling at a price that comes **before** the buy day, which is time travel.
 
-    So instead of one fixed minimum, carry a minimum that **updates as you walk forward**. Start it at infinity so the very first price always beats it, then at every day ask one question:
+    So instead of one fixed minimum, carry a minimum that **updates while walking forward**. Start it at infinity so the very first price always beats it, then at every day ask one question:
 
     > If I sold today, having bought at the cheapest price I have seen **so far**, what would I make?
 
-    The rule enforces itself. The running minimum only ever contains days that have already happened, so you can never buy from the future.
+    The rule enforces itself. The running minimum only ever contains days that have already happened, so buying from the future is impossible.
 
 !!! optimise "Correct, `O(n)` time, `O(n)` space"
 
@@ -132,7 +132,7 @@ Pick **one day to buy** and a **later day to sell** to maximise profit. Return t
 
     This passes every test. `min(min_value, price)` returns whichever of the two is smaller, so `min_value` only ever goes down.
 
-    Note that `price - min_value` can never be negative here, because `min_value` has already been updated to be at most `price`. So the old `if max_num >= 0` check was never doing anything.
+    `price - min_value` can never be negative here, because `min_value` has already been updated to be at most `price`. So the old `if max_num >= 0` check was never doing anything.
 
     Still `O(n)` **space** though, because that list holds one entry per day.
 
@@ -179,7 +179,7 @@ Pick **one day to buy** and a **later day to sell** to maximise profit. Return t
 
     1. **The trailing `if max_profit >= 0` is dead code.** `max_profit` starts at `0` and `max()` only ever raises it, so it can never be negative. `return max_profit` is the whole ending.
     2. **Indentation.** In my handwritten draft the `for` loop sat outside the method, at class level. Python would not even reach it. The loop belongs inside `maxProfit`, indented under the `def`.
-    3. `float("inf")` works, but `min_value = prices[0]` is the other common way in. Either is fine, just say which you picked and why.
+    3. `float("inf")` works, but `min_value = prices[0]` is the other common way in. Either is fine, as long as the choice has a reason behind it.
 
 ## Traces
 
@@ -220,6 +220,6 @@ Pick **one day to buy** and a **later day to sell** to maximise profit. Return t
 
 * When a problem forbids going backwards in time, think **running state**: running min, running max, running sum. That is usually the `O(n)` unlock.
 * Two separate questions to ask in order. First *is it correct*, then *how much memory does it hold*. Fixing the logic and shrinking the space were two different edits here.
-* **If you are building a list only to call `max()` or `min()` or `sum()` on it at the end, you do not need the list.** Keep a running value instead. `O(n)` space becomes `O(1)`.
+* **A list built only to call `max()` or `min()` or `sum()` on it at the end is not needed.** A running value does the same job. `O(n)` space becomes `O(1)`.
 * Test an idea against a small adversarial case before writing it. `[2, 100, 1]` would have killed the global minimum idea in fifteen seconds on paper.
 * I guessed `log(x)` for the complexity. It is `O(n)`. `log` comes from repeatedly **halving** something, such as binary search. One pass over `n` items is linear.

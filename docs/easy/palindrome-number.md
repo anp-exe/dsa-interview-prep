@@ -103,13 +103,13 @@ Given an integer `x`, return `true` if `x` is a palindrome, and `false` otherwis
             return str(x) == str(x)[::-1]
     ```
 
-    Same complexity, far less to read. Interviewers notice this.
+    Same complexity, far less to read.
 
 ## 4 · Optimise
 
 !!! insight "The one idea to remember"
 
-    You never need the whole reversed number. Reverse **only the back half** and compare it to what is left of the front half. Halfway through, the two meet, and you also dodge any integer overflow in languages that have it.
+    The whole reversed number is never needed. Reverse **only the back half** and compare it to what is left of the front half. Halfway through, the two meet, which also dodges any integer overflow in languages that have it.
 
 !!! optimise "Half reversal, `O(1)` space"
 
@@ -140,7 +140,7 @@ Given an integer `x`, return `true` if `x` is a palindrome, and `false` otherwis
     | String slice | `O(log x)` | `O(log x)` |
     | Half reversal | `O(log x)` | `O(1)` |
 
-    Same time class, but no extra memory allocated. That is the whole win, and it is worth saying out loud in an interview.
+    Same time class, but no extra memory allocated. That is the whole win, and the point to state explicitly.
 
 !!! gotcha "Indentation bug in my second draft"
 

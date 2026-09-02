@@ -8,7 +8,7 @@ Empty on purpose. Hard problems are mostly a medium problem with one extra twist
 
 ## When to start
 
-Come back here once you can do roughly twenty mediums without reaching for a hint. Hards are rare in a STEP interview, so this is a stretch goal, not a blocker.
+Worth starting once roughly twenty mediums go without a hint. Hards are rare in a STEP interview, so this is a stretch goal, not a blocker.
 
 ## The shortlist for when that happens
 
@@ -28,4 +28,4 @@ Come back here once you can do roughly twenty mediums without reaching for a hin
 
 !!! insight "The thing that makes hards feel possible"
 
-    Almost every hard problem is a pattern you already know plus one of: a heap instead of a sort, binary search over the **answer** rather than the array, or a second dimension on the DP table. Ask which of those three it is before assuming it needs something new.
+    Almost every hard problem is a familiar pattern plus one of: a heap instead of a sort, binary search over the **answer** rather than the array, or a second dimension on the DP table. Ask which of those three it is before assuming it needs something new.

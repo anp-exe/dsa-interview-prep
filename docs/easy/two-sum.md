@@ -104,7 +104,7 @@ Each input has **exactly one solution**, and you may not use the same element tw
 
 !!! gotcha "Manual index counters are a trap"
 
-    Tracking `i` and `j` by hand with `i = i + 1` works, but it is the single easiest place to introduce an off by one bug, and an interviewer will notice. Python gives you this for free:
+    Tracking `i` and `j` by hand with `i = i + 1` works, but it is the single easiest place to introduce an off by one bug. Python provides this directly:
 
     ```python
     for i, num in enumerate(nums):
@@ -112,7 +112,7 @@ Each input has **exactly one solution**, and you may not use the same element tw
             ...
     ```
 
-    Same logic, one fewer thing to get wrong. Use `enumerate` every time you need both the value and the position.
+    Same logic, one fewer thing to get wrong. Use `enumerate` whenever both the value and the position are needed.
 
 ## 4 · Optimise
 
@@ -137,14 +137,14 @@ Each input has **exactly one solution**, and you may not use the same element tw
 
     **Why it is correct:** `seen` only ever contains numbers from indices **before** `i`, so any hit is guaranteed to be a different element. The "use each element once" rule is handled by the ordering, not by an `if i == j` check.
 
-    **Why the store comes after the check:** for `nums = [3,3], target = 6`, at `i = 0` nothing is in `seen` yet, so `3` gets stored. At `i = 1` the complement `3` is found and you return `[0, 1]`. If you stored first you would match a number against itself.
+    **Why the store comes after the check:** for `nums = [3,3], target = 6`, at `i = 0` nothing is in `seen` yet, so `3` gets stored. At `i = 1` the complement `3` is found and `[0, 1]` is returned. Storing first would match a number against itself.
 
     | | Time | Space |
     |---|---|---|
     | Brute force | `O(n²)` | `O(1)` |
     | Hash map | `O(n)` | `O(n)` |
 
-    That is the classic trade: you buy time with memory.
+    That is the classic trade: time bought with memory.
 
 ---
 
@@ -153,13 +153,13 @@ Each input has **exactly one solution**, and you may not use the same element tw
 ??? note "Array lookup vs hash map lookup"
 
     ```python
-    # array: scan until you find it
+    # array: scan until it is found
     users = [("ana@x.com", 24), ("ben@x.com", 31)]
     for email, age in users:
         if email == "cleo@x.com":
             print(age)
             break
-    # worst case you check every entry. O(n).
+    # worst case checks every entry. O(n).
     ```
 
     ```python
@@ -188,12 +188,12 @@ Each input has **exactly one solution**, and you may not use the same element tw
 
     **"You have to convert a list to a tuple."** Only when the list is being used as a **key**. Dict keys must be hashable and lists are not, so `d[[1,2]]` fails and `d[(1,2)]` works. Values can be lists quite happily: `{"red": ["ana"]}` is fine.
 
-    **"A dict needs keys initialised, a defaultdict has them already initialised."** Not quite. A `defaultdict` does not pre create anything. It creates a default value **the moment you touch a missing key**, so `d["new"].append(1)` works instead of raising `KeyError`. Useful for grouping, not needed here.
+    **"A dict needs keys initialised, a defaultdict has them already initialised."** Not quite. A `defaultdict` does not pre create anything. It creates a default value **the moment a missing key is touched**, so `d["new"].append(1)` works instead of raising `KeyError`. Useful for grouping, not needed here.
 
 ---
 
 ## Next time
 
 * Reach for a hash map the second a problem says "find a pair / find a duplicate / have I seen this before".
-* Write the brute force, state its complexity out loud, then improve it. Interviewers want to see the progression, not a memorised answer.
+* Write the brute force, state its complexity out loud, then improve it. The progression is what gets marked, not a memorised answer.
 * Use `enumerate` instead of hand rolled counters.

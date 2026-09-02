@@ -17,7 +17,7 @@ Copy this into a new file under `docs/easy/`, `docs/medium/` or `docs/hard/`, th
 
 ## The question
 
-One or two lines in your own words, then the examples.
+One or two lines restating it, then the examples.
 
 === "Example 1"
 
@@ -153,6 +153,6 @@ pip install -r requirements.txt
 mkdocs serve
 ```
 
-Then open `http://127.0.0.1:8000`. It live reloads as you save.
+Then open `http://127.0.0.1:8000`. It live reloads on save.
 
 Push to `main` and the GitHub Action rebuilds and publishes the site automatically.

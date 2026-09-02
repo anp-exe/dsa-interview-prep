@@ -14,7 +14,7 @@ Roman numerals use seven symbols:
 |---|---|---|---|---|---|---|---|
 | Value | 1 | 5 | 10 | 50 | 100 | 500 | 1000 |
 
-They are normally written largest to smallest, left to right. But four is not `IIII`, it is `IV`: the one sits **before** the five, so you subtract it. Same for nine, `IX`.
+They are normally written largest to smallest, left to right. But four is not `IIII`, it is `IV`: the one sits **before** the five, so it is subtracted. Same for nine, `IX`.
 
 There are exactly **six** subtractive cases:
 
@@ -72,7 +72,7 @@ There are exactly **six** subtractive cases:
 
 !!! insight "The one idea to remember"
 
-    When a problem has a handful of named exceptions, ask whether the exceptions can go **in the same lookup table** as the normal cases. Very often the "special case" branch disappears entirely and you are left with one loop.
+    When a problem has a handful of named exceptions, ask whether the exceptions can go **in the same lookup table** as the normal cases. Very often the "special case" branch disappears entirely and what is left is one loop.
 
 **Walking `MCMXCIV`**
 
@@ -132,7 +132,7 @@ There are exactly **six** subtractive cases:
 !!! gotcha "Three drafting slips"
 
     1. **`"IC": 90` should be `"XC"`.** Ninety is ten before a hundred. Worth a second look only because it does not crash: `XC` simply would not be found, so it falls to the single character branch and gives `10 + 100 = 110`.
-    2. **`.value()` is not a dict method.** It is `.values()`, and even that returns *all* the values as a view rather than the one you want. One value out of a dict is `roman_nums[s[i]]`. Also, `x + num` on its own line computes a number and throws it away. You need `num += ...`.
+    2. **`.value()` is not a dict method.** It is `.values()`, and even that returns *all* the values as a view rather than a single one. One value out of a dict is `roman_nums[s[i]]`. Also, `x + num` on its own line computes a number and throws it away. The accumulating line has to be `num += ...`.
     3. **`roman_nums[key] += num` is backwards.** `a += b` means `a = a + b`, so whatever sits on the left is the thing being built up. That version adds `num` into the dict and leaves `num` at `0`.
 
 ## 4 · Working code
@@ -170,7 +170,7 @@ There are exactly **six** subtractive cases:
 
     Python is zero indexed, so a string of length 4 has indices `0, 1, 2, 3`. Starting at `0` and stopping when `i` reaches `len(s)` covers exactly those and no more.
 
-    The part that looks risky is `s[i:i+2]` on the **last** character, where `i+2` is past the end. That is fine, because **slicing never raises**, it just gives you what is there:
+    The part that looks risky is `s[i:i+2]` on the **last** character, where `i+2` is past the end. That is fine, because **slicing never raises**, it just returns what is there:
 
     ```python
     >>> "III"[2:4]
@@ -179,7 +179,7 @@ There are exactly **six** subtractive cases:
     IndexError: string index out of range
     ```
 
-    So the window quietly becomes a one character string, fails the `in` check, and falls to the single character branch. Slicing forgives, indexing does not. Worth remembering.
+    So the window quietly becomes a one character string, fails the `in` check, and falls to the single character branch. Slicing forgives, indexing does not.
 
 ## 5 · Complexity
 
@@ -187,15 +187,15 @@ There are exactly **six** subtractive cases:
 
     **Time is `O(n)`.** The `while` loop advances `i` by 1 or 2 every pass, so it runs at most `n` times, and everything inside it is a constant time dict lookup.
 
-    **This cannot be improved.** You have to look at every character at least once to know what the number is, so `O(n)` is the lower bound, not just what this solution happens to achieve. Being able to say *why* no better complexity exists is a stronger answer than just naming the complexity.
+    **This cannot be improved.** Every character has to be read at least once to know what the number is, so `O(n)` is the lower bound, not just what this solution happens to achieve. Naming *why* no better complexity exists is a stronger answer than naming the complexity alone.
 
     **Space is `O(1)`.** Not because it is a hash map, but because that hash map holds **thirteen entries no matter what the input is**. A million character input still gets the same thirteen entries. Nothing in the solution grows with `n`.
 
-!!! plan "Worth being precise about the `O(1)`"
+!!! plan "The precise reason for the `O(1)`"
 
-    Beating 89% on memory is a good sign. The reason is just worth naming exactly, because that is the part an interviewer marks: the dict is the thing **using** memory here, not what saves it. What keeps this at `O(1)` is that nothing per-character is ever built, no list of parsed values, no split string, and the table is a fixed thirteen entries whatever the input.
+    The dict is the thing **using** memory here, not what saves it. The space stays constant because nothing per-character is ever built: no list of parsed values, no split string, and the table is a fixed thirteen entries whatever the input.
 
-    So the sentence to say out loud is `O(1)` **because the table is fixed size**. Percentiles also move around between submissions of identical code, so the reasoning travels better than the number.
+    Phrasing: `O(1)` **because the table is fixed size**. LeetCode percentiles move around between submissions of identical code, so the reasoning is the durable part, not the number.
 
 ## Alternative worth knowing
 
@@ -219,14 +219,14 @@ There are exactly **six** subtractive cases:
 
     `MCMXCIV` becomes `1000 - 100 + 1000 - 10 + 100 - 1 + 5`, which is `1994`.
 
-    Same `O(n)` time and `O(1)` space. Smaller table, but it encodes the subtractive rule as **logic** rather than **data**. The thirteen entry version is more explicit about what the six exceptions are, which is arguably easier to defend out loud. Either is a good answer, just know why you picked it.
+    Same `O(n)` time and `O(1)` space. Smaller table, but it encodes the subtractive rule as **logic** rather than **data**. The thirteen entry version is more explicit about what the six exceptions are, which is arguably easier to defend out loud. Either works, as long as the choice has a reason behind it.
 
 ---
 
 ## Next time
 
 * **Put the exceptions in the lookup table.** If a problem lists a small fixed set of special cases, try making them ordinary entries in the same dict. The special case branch often disappears.
-* `.values()` gives you **all** the values. `d[key]` gives you **one**. Different jobs.
+* `.values()` returns **all** the values. `d[key]` returns **one**. Different jobs.
 * `a += b` means `a = a + b`, so the accumulator goes on the **left**.
 * **Slicing never raises, indexing does.** `s[i:i+2]` past the end returns a short string. `s[i]` past the end is an `IndexError`. That difference is doing real work in this solution.
-* When the complexity cannot be improved, say **why**. "You have to read every character, so `O(n)` is the floor" is a better answer than "it is `O(n)`."
+* When the complexity cannot be improved, say **why**. "Every character has to be read, so `O(n)` is the floor" beats "it is `O(n)`."
