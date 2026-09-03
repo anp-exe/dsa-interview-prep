@@ -35,7 +35,7 @@ A string is valid if:
 
 <div class="step-row">
   <div class="step-chip s1">1 · Plan<small>learn the structure first</small></div>
-  <div class="step-chip s2">2 · Naive attempt<small>counting types, 50% wrong</small></div>
+  <div class="step-chip s2">2 · First idea<small>counting bracket types</small></div>
   <div class="step-chip s3">3 · Stack<small>the right shape</small></div>
   <div class="step-chip s4">4 · Hash map<small>tidy the branches</small></div>
 </div>
@@ -86,7 +86,7 @@ Stacks can be built from arrays or linked lists. The [Python docs](https://docs.
 
     So: push every opening bracket. On a closing bracket, the top of the stack must be its partner. If it is, pop and carry on. If it is not, the string is invalid.
 
-## 2 · The naive attempt
+## 2 · First idea: counting types
 
 !!! attempt "Checking that each type appears with its partner"
 
@@ -101,11 +101,9 @@ Stacks can be built from arrays or linked lists. The [Python docs](https://docs.
         return True
     ```
 
-    Fails on `"([)]"`. Both `(` and `)` are present, both `[` and `]` are present, so it returns `True`, but the brackets close in the wrong order.
+    This gets `"([)]"` wrong. Both `(` and `)` are present, both `[` and `]` are present, so it returns `True`, even though the brackets close in the wrong order. `")("` slips through for the same reason.
 
-    Checked against every bracket string up to length 8, all 2,015,539 of them: this version is wrong on **50%** of them. It also passes `")("` and every other permutation, because presence says nothing about order.
-
-    The rule it cannot see is **"open brackets must be closed in the correct order"**, and no amount of `in` checking will ever see it, because `in` has no notion of position.
+    The rule it cannot see is **"open brackets must be closed in the correct order"**, and no amount of `in` checking will reach it, because `in` has no notion of position. That is the point where the problem needs a data structure rather than more conditions.
 
 ## 3 · Stack
 
@@ -130,7 +128,7 @@ Stacks can be built from arrays or linked lists. The [Python docs](https://docs.
   <figcaption>Reading left to right. The first curly brace is an opening bracket, so it gets pushed and dealt with later.</figcaption>
 </figure>
 
-!!! gotcha "The draft where the `elif` was checking the wrong thing"
+!!! plan "Why the `elif` needed rethinking"
 
     ```python
     for bracket in s:
@@ -216,9 +214,9 @@ Stacks can be built from arrays or linked lists. The [Python docs](https://docs.
                 return False
     ```
 
-!!! gotcha "Three small things left in that version"
+!!! plan "Three things to tighten"
 
-    1. **`pairs` is built inside the loop**, so a fresh dict is created for every closing bracket. On a 10,000 character input that is **5,000 dictionaries** where one would do. Same shape as the recomputed `min()` in [Longest Common Prefix](longest-common-prefix.md): a value that cannot change belongs above the loop.
+    1. **`pairs` is built inside the loop**, so a fresh dict is created for every closing bracket. On a 10,000 character input that is 5,000 dictionaries when one would do. Same shape as the recomputed `min()` in [Longest Common Prefix](longest-common-prefix.md): a value that cannot change belongs above the loop.
     2. **`if bracket in ["}", "]", ")"]` duplicates the dict keys.** Once `pairs` exists, `if bracket in pairs` is the same test for free, and the two can never drift apart.
     3. **`if stack == []: return True else: return False`** is the `return cond` pattern from the [cheat sheet](../cheatsheet.md). It is `return not stack`.
 
@@ -265,6 +263,6 @@ Stacks can be built from arrays or linked lists. The [Python docs](https://docs.
 * **"Matching", "nested", "most recent", "undo"** all mean stack. LIFO is the giveaway.
 * Presence checks (`in`) cannot see order. A rule about **sequence** needs a structure that remembers sequence.
 * Repeated `elif` branches that differ only by a value are a lookup table waiting to happen.
-* Build lookup tables **above** the loop, not inside it. Second time this has come up.
+* Build lookup tables **above** the loop, not inside it. Same lesson as [Longest Common Prefix](longest-common-prefix.md).
 * `not stack or stack.pop() != ...` short circuits, which removes the separate empty check.
 * For complexity, find the input that makes the algorithm work hardest, then describe that.

@@ -36,7 +36,7 @@ Find the longest common prefix string amongst an array of strings. If there is n
   <div class="step-chip s1">1 · Plan<small>say it in English</small></div>
   <div class="step-chip s2">2 · Pseudocode<small>shape before syntax</small></div>
   <div class="step-chip s3">3 · Working code<small>first try, passes</small></div>
-  <div class="step-chip s4">4 · Tidy up<small>one wasted recompute</small></div>
+  <div class="step-chip s4">4 · Tidy up<small>hoisting the min</small></div>
 </div>
 
 ## 1 · Plan
@@ -156,7 +156,7 @@ Find the longest common prefix string amongst an array of strings. If there is n
 
 ## 4 · One thing to tidy
 
-!!! gotcha "`min([...])` is recomputed on every pass of the loop"
+!!! plan "Hoisting the `min` out of the loop"
 
     The `min` sits in the `while` condition, so it is re-evaluated **every single iteration**, and each time it builds a brand new list of every word length.
 

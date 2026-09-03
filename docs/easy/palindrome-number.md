@@ -91,7 +91,7 @@ Given an integer `x`, return `true` if `x` is a palindrome, and `false` otherwis
 
     This passes. Time `O(log x)`, because a number has about `log₁₀(x)` digits and each digit gets touched a constant number of times. Space `O(log x)`, because both strings are held in memory.
 
-!!! gotcha "Three fixes from my draft"
+!!! plan "Three fixes from the draft"
 
     1. **`true` and `false` are not Python.** It is `True` and `False`, capitalised. Lowercase raises `NameError`.
     2. **Do not name a variable `reversed`.** That shadows the built in `reversed()` function. Use `backwards`, `rev`, anything else.
@@ -142,7 +142,7 @@ Given an integer `x`, return `true` if `x` is a palindrome, and `false` otherwis
 
     Same time class, but no extra memory allocated. That is the whole win, and the point to state explicitly.
 
-!!! gotcha "Indentation bug in my second draft"
+!!! plan "Indentation in the handwritten draft"
 
     In the version I wrote out by hand, everything after `return False` was tucked **inside** the `if`, so the reversal only ran for numbers that had already been rejected. The guard clause must return and then the rest of the function continues at the same level as the `if`. Worth re reading indentation before submitting.
 

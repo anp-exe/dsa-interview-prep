@@ -50,7 +50,7 @@ There are exactly **six** subtractive cases:
 <div class="step-row">
   <div class="step-chip s1">1 · Plan<small>say it in English</small></div>
   <div class="step-chip s2">2 · Pseudocode<small>shape before syntax</small></div>
-  <div class="step-chip s3">3 · First draft<small>three syntax errors</small></div>
+  <div class="step-chip s3">3 · First draft<small>syntax to work out</small></div>
   <div class="step-chip s4">4 · Working code<small>then check the complexity</small></div>
 </div>
 
@@ -104,7 +104,7 @@ There are exactly **six** subtractive cases:
     return num
     ```
 
-## 3 · First draft, and the three things wrong with it
+## 3 · First draft
 
 !!! attempt "What I wrote first"
 
@@ -129,9 +129,9 @@ There are exactly **six** subtractive cases:
     return num
     ```
 
-!!! gotcha "Three drafting slips"
+!!! plan "What changed from the draft"
 
-    1. **`"IC": 90` should be `"XC"`.** Ninety is ten before a hundred. Worth a second look only because it does not crash: `XC` simply would not be found, so it falls to the single character branch and gives `10 + 100 = 110`.
+    1. **`"IC": 90` should be `"XC"`.** Ninety is ten before a hundred. Worth a second look because it does not crash: `XC` simply would not be found, so it falls to the single character branch and gives `10 + 100 = 110`.
     2. **`.value()` is not a dict method.** It is `.values()`, and even that returns *all* the values as a view rather than a single one. One value out of a dict is `roman_nums[s[i]]`. Also, `x + num` on its own line computes a number and throws it away. The accumulating line has to be `num += ...`.
     3. **`roman_nums[key] += num` is backwards.** `a += b` means `a = a + b`, so whatever sits on the left is the thing being built up. That version adds `num` into the dict and leaves `num` at `0`.
 

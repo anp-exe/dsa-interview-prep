@@ -35,7 +35,7 @@ Pick **one day to buy** and a **later day to sell** to maximise profit. Return t
 <div class="step-row">
   <div class="step-chip s1">1 · Plan<small>say it in English</small></div>
   <div class="step-chip s2">2 · Pseudocode<small>shape before syntax</small></div>
-  <div class="step-chip s3">3 · Failed attempt<small>155 / 213 and why</small></div>
+  <div class="step-chip s3">3 · First attempt<small>global minimum</small></div>
   <div class="step-chip s4">4 · Optimise<small>logic first, then space</small></div>
 </div>
 
@@ -47,7 +47,7 @@ Pick **one day to buy** and a **later day to sell** to maximise profit. Return t
 
     First instinct: for every day, look forward at every later day and record the difference. Keep the biggest. That is every pair, so `O(n²)`.
 
-    Second instinct, and the one that turned out to be wrong: find the smallest price in the whole array, then find the largest price after it. It feels right. It is not.
+    Second instinct: find the smallest price in the whole array, then find the largest price after it. That one turns out not to hold, for the reason in section 3.
 
     Edge case: if prices only ever fall, such as `[4,3,2,1]`, every difference is negative. You only lose money buying in on any day, so return `0`.
 
@@ -67,9 +67,9 @@ Pick **one day to buy** and a **later day to sell** to maximise profit. Return t
 
     Correct, but `O(n²)`, and with `n` up to 100,000 it times out.
 
-## 3 · The attempt that failed
+## 3 · First attempt
 
-!!! attempt "155 / 213 test cases"
+!!! attempt "Global minimum, then the maximum after it"
 
     ```python
     class Solution:
@@ -87,7 +87,7 @@ Pick **one day to buy** and a **later day to sell** to maximise profit. Return t
             return max_num if max_num >= 0 else 0
     ```
 
-    **Why it fails.** It assumes the best trade always starts at the **global** minimum. It does not.
+    **Where it breaks.** It assumes the best trade always starts at the **global** minimum, and that is not always true.
 
     ```text
     prices = [2, 100, 1]
@@ -99,7 +99,7 @@ Pick **one day to buy** and a **later day to sell** to maximise profit. Return t
     correct answer = 98   (buy at 2, sell at 100)
     ```
 
-    A global minimum that shows up **late** wipes out a big profit earlier in the array that the code never even looks at.
+    A global minimum that shows up **late** hides a bigger profit earlier in the array, because everything before it is dropped.
 
     It is also slow for a second reason: `min()`, `.index()` and the slice each walk the list, so that is several full passes where one would do.
 
@@ -171,11 +171,11 @@ Pick **one day to buy** and a **later day to sell** to maximise profit. Return t
     | Version | Time | Space | Correct? |
     |---|---|---|---|
     | Brute force, every pair | `O(n²)` | `O(1)` | yes, but times out |
-    | Global min then max after | `O(n)` | `O(n)` | **no**, 155 / 213 |
+    | Global min then max after | `O(n)` | `O(n)` | not correct |
     | Running min, list of profits | `O(n)` | `O(n)` | yes |
     | Running min, running max | `O(n)` | `O(1)` | yes |
 
-!!! gotcha "Three things to tidy in the final version"
+!!! plan "Three things to tidy"
 
     1. **The trailing `if max_profit >= 0` is dead code.** `max_profit` starts at `0` and `max()` only ever raises it, so it can never be negative. `return max_profit` is the whole ending.
     2. **Indentation.** In my handwritten draft the `for` loop sat outside the method, at class level. Python would not even reach it. The loop belongs inside `maxProfit`, indented under the `def`.

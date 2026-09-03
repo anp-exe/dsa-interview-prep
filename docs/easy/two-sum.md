@@ -102,9 +102,9 @@ Each input has **exactly one solution**, and you may not use the same element tw
 
     This passes. Time `O(n²)`, space `O(1)`.
 
-!!! gotcha "Manual index counters are a trap"
+!!! plan "Using `enumerate` for the index"
 
-    Tracking `i` and `j` by hand with `i = i + 1` works, but it is the single easiest place to introduce an off by one bug. Python provides this directly:
+    Tracking `i` and `j` by hand with `i = i + 1` works. Python provides the same thing directly, with one fewer place for an off by one to creep in:
 
     ```python
     for i, num in enumerate(nums):
@@ -184,7 +184,7 @@ Each input has **exactly one solution**, and you may not use the same element tw
         print(p["name"])
     ```
 
-??? gotcha "Two things worth correcting from my first notes"
+??? note "Two notes worth correcting"
 
     **"You have to convert a list to a tuple."** Only when the list is being used as a **key**. Dict keys must be hashable and lists are not, so `d[[1,2]]` fails and `d[(1,2)]` works. Values can be lists quite happily: `{"red": ["ana"]}` is fine.
 
