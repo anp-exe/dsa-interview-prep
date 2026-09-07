@@ -131,6 +131,23 @@ Read the problem, match the phrase, reach for the tool.
 
     When only the last two answers matter, the cache collapses to two variables. `O(n)` time, `O(1)` space.
 
+!!! plan "Fill in place from the back, from Merge Sorted Array"
+
+    ```python
+    p1, p2 = m - 1, n - 1
+    for p in range(m + n - 1, -1, -1):
+        if p2 < 0:
+            break
+        if p1 >= 0 and nums1[p1] > nums2[p2]:
+            nums1[p] = nums1[p1]
+            p1 -= 1
+        else:
+            nums1[p] = nums2[p2]
+            p2 -= 1
+    ```
+
+    Writing forwards into an array overwrites data that has not been read yet, so it needs a copy. Writing backwards into free space does not. Any in place array problem is worth trying in reverse first.
+
 !!! plan "Two pointers, coming up in Medium"
 
     ```python
@@ -157,6 +174,7 @@ Read the problem, match the phrase, reach for the tool.
 | `def f(x, acc=[])` | mutable default argument, use `acc=None` then `acc = acc or []` |
 | Guard clause indented so the rest of the function sits inside it | the guard returns, the rest continues at the same level |
 | Integer division with `/` | `/` gives a float, use `//` for integer division |
+| Finding a region by a sentinel value such as `0` | if the value is inside the constraint range it is real data, use the given indices |
 
 ---
 

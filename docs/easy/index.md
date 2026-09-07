@@ -1,6 +1,6 @@
 # Easy
 
-<span class="pill easy">7 written up</span>
+<span class="pill easy">8 written up</span>
 
 The foundation set. Every one of these hides a pattern that shows up again three difficulty levels later, so the point is not to pass the test cases, it is to be able to name the pattern afterwards.
 
@@ -62,9 +62,17 @@ The foundation set. Every one of these hides a pattern that shows up again three
 
     <span class="pill">Dynamic programming</span> `O(1)` space
 
+-   **[Merge Sorted Array](merge-sorted-array.md)**
+
+    ---
+
+    Find the padding by index, not by value. Then fill from the back, so nothing needs copying.
+
+    <span class="pill">Two pointers</span> `O(1)` space
+
 </div>
 
-## What these seven taught me
+## What these eight taught me
 
 | Lesson | Came from |
 |---|---|
@@ -86,6 +94,9 @@ The foundation set. Every one of these hides a pattern that shows up again three
 | Repeated sub-problems in a recursion tree are the signal for memoisation | Climbing Stairs |
 | `=+ 1` assigns, `+= 1` increments. Neither raises an error | Climbing Stairs |
 | `enumerate` instead of hand rolled index counters | Two Sum |
+| Identify a region by **index**, never by a sentinel value that could be real data | Merge Sorted Array |
+| In place work is often cheaper **backwards**, writing into space that is already free | Merge Sorted Array |
+| Sorted inputs mean merge, not sort. Calling `sort()` pays `log` for work already done | Merge Sorted Array |
 
 ## Suggested next
 

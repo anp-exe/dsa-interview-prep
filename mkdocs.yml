@@ -96,10 +96,12 @@ nav:
       - "Longest Common Prefix": easy/longest-common-prefix.md
       - "Valid Parentheses": easy/valid-parentheses.md
       - "Climbing Stairs": easy/climbing-stairs.md
+      - "Merge Sorted Array": easy/merge-sorted-array.md
   - Medium:
       - medium/index.md
   - Hard:
       - hard/index.md
   - Reference:
       - "Complexity Cheat Sheet": cheatsheet.md
+      - "OOP in Python": oop.md
       - "Problem Template": template.md

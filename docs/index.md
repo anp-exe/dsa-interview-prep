@@ -29,11 +29,20 @@ but the man who has solved **1 problem 1000 times**.
 
 </div>
 
+<div class="pullquote" markdown>
+
+A lot of these easies become **hards** when you have to solve it with
+`O(1)` space, time, in place, one pass, **cure cancer** during it, etc.
+
+<span class="attrib">ssredotime, LeetCode discussion</span>
+
+</div>
+
 ---
 
 ## Progress
 
-**Easy** · 7 of 7 written up
+**Easy** · 8 of 8 written up
 <div class="bar"><span class="b-easy" style="width:100%"></span></div>
 
 **Medium** · 0 written up
@@ -80,6 +89,14 @@ but the man who has solved **1 problem 1000 times**.
 
     <span class="pill">Reference</span>
 
+-   :material-cube-outline:{ .lg .g-green } **[OOP in Python](oop.md)**
+
+    ---
+
+    Classes, objects, `self`, and the four pillars. The vocabulary behind the tree in Climbing Stairs.
+
+    <span class="pill">Reference</span>
+
 </div>
 
 ---
@@ -95,5 +112,6 @@ but the man who has solved **1 problem 1000 times**.
 | [Longest Common Prefix](easy/longest-common-prefix.md) | <span class="pill easy">Easy</span> | Vertical scan, column by column | `O(S)` | `O(1)` |
 | [Valid Parentheses](easy/valid-parentheses.md) | <span class="pill easy">Easy</span> | Stack, LIFO matching | `O(n)` | `O(n)` |
 | [Climbing Stairs](easy/climbing-stairs.md) | <span class="pill easy">Easy</span> | Fibonacci recurrence, bottom up DP | `O(n)` | `O(1)` |
+| [Merge Sorted Array](easy/merge-sorted-array.md) | <span class="pill easy">Easy</span> | Two pointers from the end, in place | `O(m+n)` | `O(1)` |
 
 New problem? Start from the [template](template.md).

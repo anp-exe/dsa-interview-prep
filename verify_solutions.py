@@ -436,6 +436,134 @@ for n in range(1, 13):
         tree_counts.append(n)
 check("the tree's leaves landing on n equal the answer, n = 1..12", tree_counts, [])
 
+# ---------- Merge Sorted Array ----------
+def merge_by_value(nums1, m, nums2, n):
+    """The first attempt: find the padding by looking for zeros."""
+    i = 0
+    for element in range(len(nums1)):
+        if nums1[element] == 0:
+            nums1[element] = nums2[i]
+            i += 1
+    nums1.sort()
+
+
+def merge_by_index(nums1, m, nums2, n):
+    """The fix: the padding is exactly the slots m .. m + n - 1."""
+    i = 0
+    for element in range(m, m + n):
+        nums1[element] = nums2[i]
+        i += 1
+    nums1.sort()
+
+
+def merge_and_sort(nums1, m, nums2, n):
+    for i in range(n):
+        nums1[i + m] = nums2[i]
+    nums1.sort()
+
+
+def merge_from_start(nums1, m, nums2, n):
+    nums1_copy = nums1[:m]
+    p1 = 0
+    p2 = 0
+    for p in range(m + n):
+        if p2 >= n or (p1 < m and nums1_copy[p1] < nums2[p2]):
+            nums1[p] = nums1_copy[p1]
+            p1 += 1
+        else:
+            nums1[p] = nums2[p2]
+            p2 += 1
+
+
+def merge_from_end(nums1, m, nums2, n):
+    p1 = m - 1
+    p2 = n - 1
+    for p in range(n + m - 1, -1, -1):
+        if p2 < 0:
+            break
+        if p1 >= 0 and nums1[p1] > nums2[p2]:
+            nums1[p] = nums1[p1]
+            p1 -= 1
+        else:
+            nums1[p] = nums2[p2]
+            p2 -= 1
+
+
+print("\nMerge Sorted Array")
+MERGERS = [
+    ("by index, then sort", merge_by_index),
+    ("merge and sort     ", merge_and_sort),
+    ("pointers from start", merge_from_start),
+    ("pointers from end  ", merge_from_end),
+]
+
+for nums1, m, nums2, n, want in [
+    ([1, 2, 3, 0, 0, 0], 3, [2, 5, 6], 3, [1, 2, 2, 3, 5, 6]),
+    ([1], 1, [], 0, [1]),
+    ([0], 0, [1], 1, [1]),
+    ([0, 2, 3, 0, 0, 0], 3, [2, 5, 6], 3, [0, 2, 2, 3, 5, 6]),
+    ([-1, 0, 3, 0, 0, 0], 3, [1, 2, 2], 3, [-1, 0, 1, 2, 2, 3]),
+    ([4, 5, 6, 0, 0, 0], 3, [1, 2, 3], 3, [1, 2, 3, 4, 5, 6]),
+    ([2, 0], 1, [1], 1, [1, 2]),
+]:
+    for label, fn in MERGERS:
+        got = list(nums1)
+        fn(got, m, list(nums2), n)
+        check("%s  %s m=%d %s n=%d" % (label, nums1, m, nums2, n), got, want)
+
+# exhaustive: every sorted pair drawn from -2..2, for all m and n up to 3
+import itertools
+_vals = [-2, -1, 0, 1, 2]
+_wrong = {label: 0 for label, _ in MERGERS}
+_wrong_by_value = 0
+_total = 0
+for m in range(0, 4):
+    for n in range(0, 4):
+        if m + n == 0:
+            continue
+        for a in itertools.combinations_with_replacement(_vals, m):
+            for b in itertools.combinations_with_replacement(_vals, n):
+                start = list(a) + [0] * n
+                want = sorted(list(a) + list(b))
+                _total += 1
+                for label, fn in MERGERS:
+                    got = list(start)
+                    try:
+                        fn(got, m, list(b), n)
+                        ok = got == want
+                    except Exception:
+                        ok = False
+                    if not ok:
+                        _wrong[label] += 1
+                got = list(start)
+                try:
+                    merge_by_value(got, m, list(b), n)
+                    if got != want:
+                        _wrong_by_value += 1
+                except Exception:
+                    _wrong_by_value += 1
+
+for label, _ in MERGERS:
+    check("%s on all %d sorted pairs from %s" % (label, _total, _vals), _wrong[label], 0)
+check("the by-value version does break when 0 is real data", _wrong_by_value > 0, True)
+
+# random cross check of the O(1) space version against sorted()
+random.seed(88)
+_bad = []
+for _ in range(3000):
+    m = random.randint(0, 8)
+    n = random.randint(0, 8)
+    if m + n == 0:
+        continue
+    a = sorted(random.randint(-9, 9) for _ in range(m))
+    b = sorted(random.randint(-9, 9) for _ in range(n))
+    got = a + [0] * n
+    merge_from_end(got, m, list(b), n)
+    if got != sorted(a + b):
+        _bad.append((a, b))
+check("pointers from end match sorted() on 3000 random pairs", _bad, [])
+
+
 print()
 if fails:
     print("\n".join(fails))
