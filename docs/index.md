@@ -13,22 +13,6 @@ hide:
 
 </div>
 
-## The method
-
-<div class="step-row">
-  <div class="step-chip s1">1 · Plan<small>What is really being asked? What are the edge cases? Say it in English first.</small></div>
-  <div class="step-chip s2">2 · Pseudocode<small>Get the shape down before fighting with syntax.</small></div>
-  <div class="step-chip s3">3 · Brute force<small>Working beats clever. State the complexity out loud.</small></div>
-  <div class="step-chip s4">4 · Optimise<small>Find the one idea that removes the nested loop.</small></div>
-</div>
-
-<div class="pullquote" markdown>
-
-I fear not the man who has solved **1000 problems**,
-but the man who has solved **1 problem 1000 times**.
-
-</div>
-
 <div class="pullquote" markdown>
 
 A lot of these easies become **hards** when you have to solve it with
@@ -36,6 +20,15 @@ A lot of these easies become **hards** when you have to solve it with
 
 <span class="attrib">ssredotime, LeetCode discussion</span>
 
+</div>
+
+## The method
+
+<div class="step-row">
+  <div class="step-chip s1">1 · Plan<small>What is really being asked? What are the edge cases? Say it in English first.</small></div>
+  <div class="step-chip s2">2 · Pseudocode<small>Get the shape down before fighting with syntax.</small></div>
+  <div class="step-chip s3">3 · Brute force<small>Working beats clever. State the complexity out loud.</small></div>
+  <div class="step-chip s4">4 · Optimise<small>Find the one idea that removes the nested loop.</small></div>
 </div>
 
 ---
@@ -115,3 +108,12 @@ A lot of these easies become **hards** when you have to solve it with
 | [Merge Sorted Array](easy/merge-sorted-array.md) | <span class="pill easy">Easy</span> | Two pointers from the end, in place | `O(m+n)` | `O(1)` |
 
 New problem? Start from the [template](template.md).
+
+---
+
+<div class="pullquote" markdown>
+
+I fear not the man who has solved **1000 problems**,
+but the man who has solved **1 problem 1000 times**.
+
+</div>
