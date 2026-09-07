@@ -120,6 +120,17 @@ Read the problem, match the phrase, reach for the tool.
 
     Last In First Out. The most recent opening is the one that has to close first.
 
+!!! plan "Bottom up DP, from Climbing Stairs"
+
+    ```python
+    one, two = 1, 1
+    for _ in range(n - 1):
+        one, two = one + two, one
+    return one
+    ```
+
+    When only the last two answers matter, the cache collapses to two variables. `O(n)` time, `O(1)` space.
+
 !!! plan "Two pointers, coming up in Medium"
 
     ```python

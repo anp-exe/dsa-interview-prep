@@ -95,6 +95,7 @@ nav:
       - "Roman to Integer": easy/roman-to-integer.md
       - "Longest Common Prefix": easy/longest-common-prefix.md
       - "Valid Parentheses": easy/valid-parentheses.md
+      - "Climbing Stairs": easy/climbing-stairs.md
   - Medium:
       - medium/index.md
   - Hard:

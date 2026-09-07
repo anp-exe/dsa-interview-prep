@@ -483,3 +483,14 @@
   margin: .7rem auto 0;
   max-width: 40em;
 }
+
+/* ---------- wide tables ----------
+   Material normally wraps tables in a scrollable div at runtime. When that has
+   not happened, a table wider than the column clips and cannot be reached.
+   This makes any table scroll inside its own box instead. */
+.md-typeset table:not([class]) {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  overflow-x: auto;
+}

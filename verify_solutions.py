@@ -348,6 +348,94 @@ check("chain matches final on all %d bracket strings of length 0..8" % total, wr
 print("       (the naive presence-check version is wrong on %d of them, %.0f%%)"
       % (wrong_naive, 100 * wrong_naive / total))
 
+
+# ---------- Climbing Stairs ----------
+def climb_stairs(n: int) -> int:
+    """Bottom up, two variables. The version to submit."""
+    one, two = 1, 1
+    for _ in range(n - 1):
+        temp = one
+        one = one + two
+        two = temp
+    return one
+
+
+def climb_stairs_memo(n: int) -> int:
+    """Top down with a cache."""
+    cache = {1: 1, 2: 2}
+
+    def ways(k):
+        if k not in cache:
+            cache[k] = ways(k - 1) + ways(k - 2)
+        return cache[k]
+
+    return ways(n)
+
+
+def climb_stairs_recursive(n: int) -> int:
+    """The plain recurrence. Exponential, so only checked on small n."""
+    if n <= 2:
+        return n
+    return climb_stairs_recursive(n - 1) + climb_stairs_recursive(n - 2)
+
+
+class _Node:
+    def __init__(self, data=0):
+        self.data = data
+        self.left = None
+        self.right = None
+
+
+class BinaryTree:
+    """The tree class from the page, used here to check its leaves answer the problem."""
+
+    def __init__(self, num=3, leftInc=1, rightInc=2):
+        self.root = _Node(0)
+        self.num = num
+        self.leftInc = leftInc
+        self.rightInc = rightInc
+
+    def populate_node(self, node):
+        if node.left is None:
+            node.left = _Node(node.data + self.leftInc)
+        if node.right is None:
+            node.right = _Node(node.data + self.rightInc)
+
+    def build_tree(self):
+        queue = [self.root]
+        while len(queue) != 0:
+            node = queue.pop(0)
+            self.populate_node(node)
+            if node.left.data < self.num:
+                queue.append(node.left)
+            if node.right.data < self.num:
+                queue.append(node.right)
+
+
+def _leaves_landing_on(node, target):
+    if node is None:
+        return 0
+    if node.left is None and node.right is None:
+        return 1 if node.data == target else 0
+    return _leaves_landing_on(node.left, target) + _leaves_landing_on(node.right, target)
+
+
+print("\nClimbing Stairs")
+for n, want in [(1, 1), (2, 2), (3, 3), (4, 5), (5, 8), (6, 13), (10, 89), (20, 10946), (45, 1836311903)]:
+    check("two variables n=%d" % n, climb_stairs(n), want)
+    check("memoised     n=%d" % n, climb_stairs_memo(n), want)
+
+small = [climb_stairs_recursive(n) != climb_stairs(n) for n in range(1, 21)]
+check("plain recursion agrees for n = 1..20", any(small), False)
+
+tree_counts = []
+for n in range(1, 13):
+    tree = BinaryTree(n, 1, 2)
+    tree.build_tree()
+    if _leaves_landing_on(tree.root, n) != climb_stairs(n):
+        tree_counts.append(n)
+check("the tree's leaves landing on n equal the answer, n = 1..12", tree_counts, [])
+
 print()
 if fails:
     print("\n".join(fails))

@@ -1,6 +1,6 @@
 # Easy
 
-<span class="pill easy">6 solved</span>
+<span class="pill easy">7 written up</span>
 
 The foundation set. Every one of these hides a pattern that shows up again three difficulty levels later, so the point is not to pass the test cases, it is to be able to name the pattern afterwards.
 
@@ -54,9 +54,17 @@ The foundation set. Every one of these hides a pattern that shows up again three
 
     <span class="pill">Stack</span> `O(n)`
 
+-   **[Climbing Stairs](climbing-stairs.md)**
+
+    ---
+
+    Ways to climb `n` is ways to climb `n-1` plus `n-2`. Draw the tree, then stop recomputing it.
+
+    <span class="pill">Dynamic programming</span> `O(1)` space
+
 </div>
 
-## What these six taught me
+## What these seven taught me
 
 | Lesson | Came from |
 |---|---|
@@ -74,6 +82,9 @@ The foundation set. Every one of these hides a pattern that shows up again three
 | A rule about **order** cannot be checked with `in`. Order needs a structure | Valid Parentheses |
 | Repeated `elif` branches differing only by a value are a lookup table | Valid Parentheses |
 | Complexity is the **worst case**, so find the input that works it hardest | Valid Parentheses |
+| Drawing the decision tree makes a numeric problem visible, and shows its cost | Climbing Stairs |
+| Repeated sub-problems in a recursion tree are the signal for memoisation | Climbing Stairs |
+| `=+ 1` assigns, `+= 1` increments. Neither raises an error | Climbing Stairs |
 | `enumerate` instead of hand rolled index counters | Two Sum |
 
 ## Suggested next
