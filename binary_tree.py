@@ -11,20 +11,21 @@ class BinaryTree:
         self.leftInc = leftInc
         self.rightInc = rightInc
 
+    def populate_node(self, node):
+        if node.left is None:
+            node.left = Node(node.data + self.leftInc)
+        if node.right is None:
+            node.right = Node(node.data + self.rightInc)
+
     def build_tree(self):
         queue = [self.root]
 
         while queue:
             current = queue.pop(0)
-
             if self.num > current.data:
-                if current.left is None:
-                    current.left = Node(current.data + self.leftInc)
-                if current.right is None:
-                    current.right = Node(current.data + self.rightInc)
-
-            queue.append(current.left)
-            queue.append(current.right)
+                self.populate_node(current)
+                queue.append(current.left)
+                queue.append(current.right)
 
     def pretty_print(self):
         def _p(n, p="", l=True, r=True):
