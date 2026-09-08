@@ -12,22 +12,10 @@ class BinaryTree:
         self.rightInc = rightInc
 
     def populate_node(self, node):
-        if node.left is None:
-            node.left = Node(node.data + self.leftInc)
-        if node.right is None:
-            node.right = Node(node.data + self.rightInc)
+
 
     def build_tree(self):
-        # Initialized locally instead of in __init__
-        queue = [self.root]
 
-        while len(queue) != 0:
-            node = queue.pop(0)
-            self.populate_node(node)
-            if node.left.data < self.num:
-                queue.append(node.left)
-            if node.right.data < self.num:
-                queue.append(node.right)
 
 
     def pretty_print(self):
